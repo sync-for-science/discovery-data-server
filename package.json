@@ -1,0 +1,19 @@
+{
+   "name": "DiscoveryDataServer",
+   "version": "0.1.0",
+   "author": "cingulata, inc.",
+   "description": "S4S Discovery Data Server",
+   "dependencies": {
+      "bunyan": "^1.8.12",
+      "handlebars": "^4.0.11",
+      "moment-timezone": "^0.5.14",
+      "optimist": "^0.6.1",
+      "restify": "^6.3.4",
+      "restify-clients": "^2.0.0",
+      "util": "^0.10.3"
+   },
+   "license": "Apache 2.0",
+   "engines": {
+      "node": ">=0.8"
+   }
+}

@@ -1,0 +1,230 @@
+<!-- S4S Discovery Data Server Documentation Page Generator Handlebars template -->
+<!-- Ver 20180308 -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{{serverName}} Services ({{deployMode}})</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+    <style>
+      body { font-size: 110%; }
+      table { padding: 12px 24px 0 0; }
+      .sem-col { vertical-align: top; width: 150px; padding-left: 24px; }
+      a { font-size: 115%; padding-left: 24px; }
+      a:link { color: blue; text-decoration: none; }
+      a:hover { color: red; text-decoration: none; }
+      label, input { display: block; }
+      input.text { margin-bottom: 12px; width: 95%; padding: .4em; }
+      fieldset { padding: 0; border: 0; margin-top: 25px; }
+      .ui-dialog { font-size: 67.5%; }
+      .pre { background-color: #d3d3d3; margin: 30px 0 0 0; border: 1px solid black; padding: 3px 0 3px 10px; font-size: 130%; }
+      .version { font-size: 70%; vertical-align: 3%; }
+      .footer { background-color: #d3d3d3; margin: 30px 0 50px 0; border: 1px solid black; text-align: center; padding: 4px; }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.min.js"></script>
+    <script>
+        // Define the various service calls
+        var calls = JSON.parse('{{{calls}}}');
+
+        var jsonFieldName = 'json-field';
+        var callDesc;	     // the specific clicked call
+        var callDescSubst;   // the clicked call after URL parameters are substituted
+        var clicked;	     // its prop name in 'calls'
+
+        // Define the response dialog
+        $(function() {
+            $("#response-modal").dialog ({
+            	autoOpen: false,
+            	height: 450,
+            	width: 700,
+		position: { my: "top-55%", at: "center", of: window },
+            	modal: true
+            });
+        });
+
+        // Define the data entry dialog
+        $(function() {
+	    $("#dialog-form").dialog ({
+                autoOpen: false,
+                height: 400,
+                width: 525,
+		position: { my: "center", at: "center top+40%", of: window },
+                modal: true,
+                buttons: {
+                    "Do it!": function() {
+                        ajaxCall();
+                    },
+                    Reset: function() {
+                        clearInputs();
+                    },
+                    Cancel: function() {
+                        $(this).dialog("close");
+                    }
+                },
+                open: function () {
+                    $(document).keydown(function (event) {
+                        var ENTER_KEY = 13;
+                        if (event.which == ENTER_KEY) {
+                            ajaxCall();
+                            event.preventDefault();
+                        }
+                    });
+                },
+                close: function () {
+                    clearInputs();
+                }
+            });
+
+            // Handle clicks on page links
+            $(".clickme")
+                .click(function() {
+                    // Identify the call
+                    callDesc = this.innerHTML;
+                    clicked = this.id;
+
+                    // Submit request and display response if no parameters
+        	        if (calls[clicked].params == undefined && calls[clicked].post == undefined) {
+                        ajaxCall();
+                        return false;
+        	        }
+
+                    // Else clear the form
+                    $("#fieldset").html("");
+
+                    // Construct the form's URL parameters
+                    if (calls[clicked].params != undefined) {
+                        calls[clicked].params.forEach(function (p) {
+                            $("#fieldset").append('<label for="' + p.name + '">:' + p.name + ' &nbsp;(' + p.desc + ')</label>');
+                            $("#fieldset").append('<input type="text" name="' + p.name + '" id="' +
+                                                  p.name + '" class="text ui-widget-content ui-corner-all" />');
+                        })
+                    }
+
+                    // Construct the form's POST parameters
+                    if (calls[clicked].post != undefined) {
+                    	if (typeof calls[clicked].post == "string") {
+                    	    // One big textarea (post string is the label)
+                    	    var label = calls[clicked].post;
+                    	    $("#fieldset").append('<label for="' + jsonFieldName + '">' + label + '</label>');
+                    	    $("#fieldset").append('<textarea cols=65 rows=10 name="' + jsonFieldName + '" id="' +
+                                                  jsonFieldName + '" class="text ui-widget-content ui-corner-all" />');
+                    	} else {
+                    	    // A set of input fields
+                            calls[clicked].post.forEach(function (p) {
+                                $("#fieldset").append('<label for="' + p.name + '">' + p.name + ' &nbsp;(' + p.desc + ')</label>');
+                                $("#fieldset").append('<input type="text" name="' + p.name + '" id="' +
+                                                      p.name + '" class="text ui-widget-content ui-corner-all" />');
+                            })
+                    	}
+                    }
+
+                    $("#dialog-form").dialog("option", "title", "Set parameters for: &nbsp;'" + callDesc + "'");
+                    $("#dialog-form").dialog("open");
+                    return false;
+        	});
+        });
+
+        // Clear input elements (by class) in the data entry dialog
+        function clearInputs() {
+            $(".ui-widget-content").each (function () {
+                $(this).val("");
+            });
+        }
+
+        // Construct the Ajax settings object
+        function ajaxSettings() {
+            var settings = {};
+            // Set type
+            settings.type = clicked.split('_')[0];
+            // Setup for POST params (if required)
+            if (calls[clicked].post != undefined) {
+                if (typeof calls[clicked].post == 'string') {
+                    // Assume one chunk of JSON, name set by 'jsonFieldName'
+                    settings.data = $('#' + jsonFieldName).val();
+                    settings.contentType = 'application/json';
+                } else {
+                    // Array of fields (attr-value pairs)
+                    var params = {};
+                    calls[clicked].post.forEach(function (p) {
+                        params[p.name] = $('#' + p.name).val();
+                    })
+        	        settings.data = params;
+                }
+            }
+
+            var finalUrl = calls[clicked].path;
+            callDescSubst = callDesc;
+
+            // Substitute URL parameters (if present)
+            if (calls[clicked].params != undefined) {
+                calls[clicked].params.forEach(function (p) {
+                    var regExp = new RegExp(':' + p.name, 'g');
+                    var paramVal = $('#' + p.name).val();
+                    finalUrl = finalUrl.replace(regExp, paramVal);
+                    callDescSubst = callDescSubst.replace(regExp, paramVal);
+                })
+            }
+            settings.url = finalUrl;
+            settings.cache = false;
+            settings.dataType = 'text';
+
+            //alert(JSON.stringify(settings));
+            return settings;
+        }
+
+        // Ajax call to data service
+        function ajaxCall() {
+            var startTime = new Date();
+            var request = $.ajax(ajaxSettings());
+
+            // Success
+            request.done(function (res) {
+                var timeDiff = new Date() - startTime;
+                // Populate the dialog with the results, set the title, and show it
+                $("#response-modal").text(res);
+        	$("#response-modal").dialog("option", "title", "Results for: &nbsp;'" + callDescSubst
+						      + "'&nbsp;&nbsp;(" + res.length + " bytes, elapsed time: " + timeDiff + "ms)");
+                $("#response-modal").dialog("open");
+            });
+
+            // Failure
+            request.error(function (jqXHR, textStatus, errorThrown) {
+                // Populate the dialog with error results, set the title, and show it
+                $("#response-modal").text(jqXHR.responseText == "" ? "Timeout or no response." : jqXHR.responseText);
+                $("#response-modal").dialog("option", "title", textStatus.toUpperCase() + " for: &nbsp;'" + callDescSubst + "'");
+                $("#response-modal").dialog("open");
+            });
+        }
+    </script>
+  </head>
+  <body>
+    <!-- The response dialog "template" -->
+    <div id="response-modal" title="Results">
+    </div>
+
+    <!-- The data entry dialog "template" -->
+    <div id="dialog-form" title="Set input values">
+      <form>
+    	<fieldset id="fieldset">
+    	</fieldset>
+      </form>
+    </div>
+
+    <!-- Supported data service calls -->
+    {{#each callUrls}}{{#if pre}}{{#if pre.desc}}<h2 class="pre">{{pre.desc}} &nbsp;<span class="version">(ver {{pre.version}})</span></h2>{{else}}{{{pre}}}{{/if}}{{/if}}
+      <table>
+        <tr><td colspan="2"><b><a href="" id="{{url.id}}" class="clickme">{{url.route}}</a></b></td></tr>
+        <tr><td class="sem-col">Description:&nbsp;</td><td>{{{desc}}}</td></tr>
+        {{#if params}}<tr><td class="sem-col">Path parameters:&nbsp;</td><td>{{#each params}}':{{this.name}}' = {{{this.desc}}}<br>{{/each}}</td></tr>{{/if}}
+        {{#ifarray post}}<tr><td class="sem-col">Post parameters:&nbsp;</td><td>{{#each post}}'{{this.name}}' = {{{this.desc}}}<br>{{/each}}</td></tr>
+          {{else}}{{#if post}}<tr><td class="sem-col">Post data:&nbsp</td><td>{{{post}}}</td></tr>{{/if}}{{/ifarray}}
+        {{#if return}}<tr><td class="sem-col">Return value:&nbsp;</td><td>{{{return}}}</td></tr>{{/if}}
+        {{#if error}}<tr><td class="sem-col">Error:&nbsp;</td><td>{{{error}}}</td></tr>{{/if}}
+      </table>
+    {{/each}}
+
+    <!-- the footer -->
+    <div class="footer">Generated: &nbsp;{{{timestamp}}}</div>
+  </body>
+</html>

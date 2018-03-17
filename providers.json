@@ -1,0 +1,10 @@
+{
+   "DSTU2 Provider": {
+      "base": "http://165.227.51.4:9002",
+      "path": "/baseDstu2/Patient/{0}/$everything"
+   },
+   "DSTU3 Provider": {
+      "base": "http://165.227.51.4:9007",
+      "path": "/baseDstu3/Patient/{0}/$everything"
+   }
+}

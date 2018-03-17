@@ -1,0 +1,100 @@
+{
+   "1001": {
+      "name": "Amy V. Shaw",
+      "providers": [
+         {
+   	    "providerName": "DSTU2 Provider",
+   	    "patientId": "smart-1032702"
+   	 },
+   	 {
+   	    "providerName": "DSTU3 Provider",
+   	    "patientId": "smart-1032702"
+   	 }
+      ]
+   },
+   "1002": {
+      "name": "Joseph I. Ross",
+      "providers": [
+         {
+   	    "providerName": "DSTU2 Provider",
+   	    "patientId": "smart-1081332"
+         },
+         {
+   	    "providerName": "DSTU3 Provider",
+   	    "patientId": "smart-1081332"
+         }
+      ]
+   },
+   "1003": {
+      "name": "Robert P. Hill",
+      "providers": [
+   	 {
+   	    "providerName": "DSTU2 Provider",
+   	    "patientId": "smart-1098667"
+   	 }
+      ]
+   },
+   "1004": {
+      "name": "Patrick G. Taylor",
+      "providers": [
+   	 {
+   	    "providerName": "DSTU2 Provider",
+   	    "patientId": "smart-1134281"
+   	 }
+      ]
+   },
+   "1005": {
+      "name": "Joshua P. Williams",
+      "providers": [
+   	 {
+   	    "providerName": "DSTU2 Provider",
+   	    "patientId": "smart-1137192"
+   	 }
+      ]
+   },
+   "1006": {
+      "name": "Carol U. Hughes",
+      "providers": [
+   	 {
+   	    "providerName": "DSTU2 Provider",
+   	    "patientId": "smart-1157764"
+   	 }
+      ]
+   },
+   "1007": {
+      "name": "Daniel A. Johnson",
+      "providers": [
+   	 {
+   	    "providerName": "DSTU2 Provider",
+   	    "patientId": "smart-1186747"
+   	 }
+      ]
+   },
+   "1008": {
+      "name": "Brian Q. Gracia",
+      "providers": [
+   	 {
+   	    "providerName": "DSTU2 Provider",
+   	    "patientId": "smart-1213208"
+   	 }
+      ]
+   },
+   "1009": {
+      "name": "Stephan P. Graham",
+      "providers": [
+   	 {
+   	    "providerName": "DSTU2 Provider",
+   	    "patientId": "smart-1272431"
+   	 }
+      ]
+   },
+   "1010": {
+      "name": "Daniel X. Adams",
+      "providers": [
+   	 {
+   	    "providerName": "DSTU2 Provider",
+   	    "patientId": "smart-1288992"
+   	 }
+      ]
+   }
+}
