@@ -1,5 +1,5 @@
 <!-- S4S Discovery Data Server Documentation Page Generator Handlebars template -->
-<!-- Ver 20180308 -->
+<!-- Ver 20180411 -->
 <!doctype html>
 <html lang="en">
   <head>
@@ -182,7 +182,9 @@
             request.done(function (res) {
                 var timeDiff = new Date() - startTime;
                 // Populate the dialog with the results, set the title, and show it
-                $("#response-modal").text(res);
+        	$("#response-modal").html('<pre style="font-size:130%;">'
+					  + JSON.stringify(JSON.parse(res),null,3).replace(/\</g,'&lt;').replace(/\>/g, '&gt;')
+					  + '</pre>');
         	$("#response-modal").dialog("option", "title", "Results for: &nbsp;'" + callDescSubst
 						      + "'&nbsp;&nbsp;(" + res.length + " bytes, elapsed time: " + timeDiff + "ms)");
                 $("#response-modal").dialog("open");

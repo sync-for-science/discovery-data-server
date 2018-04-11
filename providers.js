@@ -2,7 +2,7 @@
 
 // S4S Discovery Data Server Providers web service
 // File: providers.js
-const version = '20180309';
+const version = '20180411';
 
 // Required modules
 const EventEmitter = require('events').EventEmitter;
@@ -28,7 +28,8 @@ module.exports.providers = function (req, res, next) {
       // Return documentation
       return {pre:    {desc: 'providers service', version: version},
               desc:   'Get the array of available provider names.',
-              return: 'The JSON array of providers:<div style="margin-left:30px;">' + JSON.stringify(config.providerNames(), null, 3) + '</div>'};
+              return: 'The JSON array of providers:<div style="margin-left:30px;"><pre style="margin-top:0px;">'
+	      	      + JSON.stringify(config.providerNames(), null, 3) + '</div></pre>'};
    } else {
       util.sendJson(req, res, config.providerNames());
       return next();

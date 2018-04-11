@@ -2,7 +2,7 @@
 
 // S4S Discovery Data Services
 // File: DiscoveryData.js
-const version = '20180308';
+const version = '20180328';
 
 // Required modules
 const restify = require('restify');
@@ -28,14 +28,13 @@ const logInst = new Logger({
 const server = restify.createServer({name: 'S4S Discovery Data Server', version: '1.0.0', log: logInst});
 server.use(restify.plugins.bodyParser());
 
-// Log 'Not Found' errors
-server.on('NotFound', function (req, res) {
-    logInst.info({req: req}, 'Not Found');
-    res.header('content-type', 'text/plain');
-    res.send(404, 'Not Found\n');
+// CORS support
+server.pre(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
 });
 
-// Correctly handle HTTP OPTIONS
+// Correctly handle HTTP OPTIONS (for CORS)
 server.on('MethodNotAllowed', function (req, res) {
     if (req.method == 'OPTIONS') {
 	    // Add header to satisfy CORS preflight check
@@ -46,6 +45,13 @@ server.on('MethodNotAllowed', function (req, res) {
 	    res.header('content-type', 'text/plain');
 	    res.send(405, 'Method Not Allowed\n');
     }
+});
+
+// Log 'Not Found' errors
+server.on('NotFound', function (req, res) {
+    logInst.info({req: req}, 'Not Found');
+    res.header('content-type', 'text/plain');
+    res.send(404, 'Not Found\n');
 });
 
 // Log completion
@@ -78,7 +84,6 @@ providers.on('ready', function () {
 // Allowed 'providers' methods and routes
 server.get('/providers', providers.providers);
 server.get('/providers/:id', providers.providersForParticipant);
-//server.get('/providers/:id', providers.providers);
 
 // ---------- Configure the 'participants' service --------------------
 var participants = require('./participants');
