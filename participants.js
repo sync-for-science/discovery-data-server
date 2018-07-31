@@ -2,7 +2,7 @@
 
 // S4S Discovery Data Server Participants web service
 // File: participants.js
-const version = '20180411';
+const version = '20180727';
 
 // Required modules
 const restifyClients = require('restify-clients');
@@ -30,11 +30,11 @@ module.exports.participants = function (req, res, next) {
    if (req == undefined) {
       // Return documentation
       return {pre:    {desc: 'participants service', version: version},
-              desc:   'Get the property list of available participants (id: name).',
+	      desc:   'Get the id, name, ... for each participant: { &lt;id&gt; : { name: &lt;name&gt;, ... }, ... }',
               return: 'The JSON object of participants:<div style="margin-left:30px;"><pre style="margin-top:0px;">'
-	      	      + JSON.stringify(config.participantsById(),null,3) + '</pre></div>'};
+	      	      + JSON.stringify(config.participants,null,3) + '</pre></div>'};
    } else {
-      util.sendJson(req, res, config.participantsById());
+      util.sendJson(req, res, config.participants);
       return next();
    }
 };

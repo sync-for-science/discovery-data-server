@@ -2,7 +2,7 @@
 
 // S4S Discovery Data Services
 // File: DiscoveryData.js
-const version = '20180328';
+const version = '20180727';
 
 // Required modules
 const restify = require('restify');
@@ -25,7 +25,7 @@ const logInst = new Logger({
 });
 
 // Setup restify
-const server = restify.createServer({name: 'S4S Discovery Data Server', version: '1.0.0', log: logInst});
+const server = restify.createServer({name: 'S4S Discovery Data Server', version: '1.1.0', log: logInst});
 server.use(restify.plugins.bodyParser());
 
 // CORS support

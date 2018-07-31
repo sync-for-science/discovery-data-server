@@ -2,7 +2,7 @@
 
 // S4S Discovery Data Server
 // File: config.js
-const version = '20180309';
+const version = '20180727';
 
 // Required modules
 const argv = require('optimist').argv;
@@ -39,21 +39,6 @@ if (argv.dev || argv.development) {
 // ----- Providers & Participants -----
 config.providers = JSON.parse(fs.readFileSync('providers.json'));
 config.participants = JSON.parse(fs.readFileSync('participants.json'));
-
-// Return the property list of participants by id (id : name)
-var participantsByIdCached = null;
-config.participantsById = function () {
-   if (!participantsByIdCached) {
-      // Build cached value
-      participantsByIdCached = {};
-      for (let id in config.participants) {
-	 if (config.participants.hasOwnProperty(id)) {
-	    participantsByIdCached[id] = config.participants[id].name;
-	 }
-      }
-   }
-   return participantsByIdCached;
-}
 
 // Return the array of available provider names
 config.providerNames = function () {

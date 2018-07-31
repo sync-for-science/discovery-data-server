@@ -1,19 +1,29 @@
 {
    "1001": {
       "name": "Amy V. Shaw",
+      "flagged": false,
+      "gender": "F",
+      "dob": "2007-03-20",
+      "dateRange": "2007-2011",
+      "valueCount": 9,
       "providers": [
          {
-   	    "providerName": "DSTU2 Provider",
+	    "providerName": "DSTU2 Provider",
    	    "patientId": "smart-1032702"
    	 },
    	 {
-   	    "providerName": "DSTU3 Provider",
+	    "providerName": "DSTU3 Provider",
    	    "patientId": "smart-1032702"
    	 }
       ]
    },
    "1002": {
       "name": "Joseph I. Ross",
+      "flagged": false,
+      "gender": "M",
+      "dob": "2003-10-02",
+      "dateRange": "2004-2005",
+      "valueCount": 9,
       "providers": [
          {
    	    "providerName": "DSTU2 Provider",
@@ -27,6 +37,11 @@
    },
    "1003": {
       "name": "Robert P. Hill",
+      "flagged": false,
+      "gender": "M",
+      "dob": "1953-10-27",
+      "dateRange": "2005-2005",
+      "valueCount": 9,
       "providers": [
    	 {
    	    "providerName": "DSTU2 Provider",
@@ -36,6 +51,11 @@
    },
    "1004": {
       "name": "Patrick G. Taylor",
+      "flagged": false,
+      "gender": "M",
+      "dob": "2004-10-15",
+      "dateRange": "2005-2005",
+      "valueCount": 10,
       "providers": [
    	 {
    	    "providerName": "DSTU2 Provider",
@@ -45,6 +65,11 @@
    },
    "1005": {
       "name": "Joshua P. Williams",
+      "flagged": false,
+      "gender": "M",
+      "dob": "1954-08-21",
+      "dateRange": "2000-2009",
+      "valueCount": 10,
       "providers": [
    	 {
    	    "providerName": "DSTU2 Provider",
@@ -54,6 +79,11 @@
    },
    "1006": {
       "name": "Carol U. Hughes",
+      "flagged": false,
+      "gender": "F",
+      "dob": "1949-11-04",
+      "dateRange": "2004-2006",
+      "valueCount": 9,
       "providers": [
    	 {
    	    "providerName": "DSTU2 Provider",
@@ -63,6 +93,11 @@
    },
    "1007": {
       "name": "Daniel A. Johnson",
+      "flagged": false,
+      "gender": "M",
+      "dob": "1995-02-22",
+      "dateRange": "2008-2009",
+      "valueCount": 17,
       "providers": [
    	 {
    	    "providerName": "DSTU2 Provider",
@@ -72,6 +107,11 @@
    },
    "1008": {
       "name": "Brian Q. Gracia",
+      "flagged": false,
+      "gender": "M",
+      "dob": "1965-06-22",
+      "dateRange": "1997-1997",
+      "valueCount": 8,
       "providers": [
    	 {
    	    "providerName": "DSTU2 Provider",
@@ -81,6 +121,11 @@
    },
    "1009": {
       "name": "Stephan P. Graham",
+      "flagged": false,
+      "gender": "M",
+      "dob": "1945-05-01",
+      "dateRange": "2002-2003",
+      "valueCount": 16,
       "providers": [
    	 {
    	    "providerName": "DSTU2 Provider",
@@ -90,11 +135,507 @@
    },
    "1010": {
       "name": "Daniel X. Adams",
+      "flagged": false,
+      "gender": "M",
+      "dob": "1925-12-23",
+      "dateRange": "1997-1997",
+      "valueCount": 8,
       "providers": [
    	 {
    	    "providerName": "DSTU2 Provider",
    	    "patientId": "smart-1288992"
    	 }
+      ]
+   },
+
+   "2001": {
+      "name": "Jacque Jerde",
+      "flagged": false,
+      "gender": "F",
+      "dob": "2016-08-30",
+      "dateRange": "2016-2017",
+      "valueCount": 31,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "faf193dc-7950-4994-990b-cc5b977631b7"
+	 }
+      ]
+   },
+   "2002": {
+      "name": "Mrs. Greta Emard",
+      "flagged": false,
+      "gender": "F",
+      "dob": "1981-01-01",
+      "dateRange": "1982-2017",
+      "valueCount": 50,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "33c208e1-fe69-48ee-9443-355cd451d4b5"
+	 }
+      ]
+   },
+   "2003": {
+      "name": "Rebecca Palmer",
+      "flagged": false,
+      "gender": "F",
+      "dob": "1952-04-23",
+      "dateRange": "2015-2015",
+      "valueCount": 1,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "SMART-PROMs-55"
+	 }
+      ]
+   },
+   "2004": {
+      "name": "Scotty Waters",
+      "flagged": true,
+      "gender": "M",
+      "dob": "2016-01-13",
+      "dateRange": "2016-2017",
+      "valueCount": 48,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "59691f15-036d-4ca0-9aed-98be357ac004"
+	 }
+      ]
+   },
+   "2005": {
+      "name": "Mrs. Joshua Kling",
+      "flagged": false,
+      "gender": "F",
+      "dob": "1926-02-09",
+      "dateRange": "1937-2002",
+      "valueCount": 10,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "04d77f1c-d7a5-46ba-ad52-7757f522319f"
+	 }
+      ]
+   },
+   "2006": {
+      "name": "Mr. Bryan Mayer",
+      "flagged": false,
+      "gender": "M",
+      "dob": "1957-03-07",
+      "dateRange": "1966-2017",
+      "valueCount": 64,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "fdb4e56a-145b-4962-8a54-e056757832aa"
+	 }
+      ]
+   },
+   "2007": {
+      "name": "Christen Turner",
+      "flagged": true,
+      "gender": "F",
+      "dob": "2003-06-13",
+      "dateRange": "2007-2017",
+      "valueCount": 72,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "6c4713ae-9a71-4984-80a2-446172e905bb"
+	 }
+      ]
+   },
+   "2008": {
+      "name": "Mr. Kris Mohr",
+      "flagged": false,
+      "gender": "M",
+      "dob": "1989-08-19",
+      "dateRange": "1993-2015",
+      "valueCount": 48,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "7b697322-3607-46cb-a240-c081bccba2e5"
+	 }
+      ]
+   },
+   "2009": {
+      "name": "Mr. Fletcher Howell",
+      "flagged": false,
+      "gender": "M",
+      "dob": "1918-11-14",
+      "dateRange": "1969-1990",
+      "valueCount": 17,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "b1f0365d-f405-45c0-8cbd-da56518e7504"
+	 }
+      ]
+   },
+   "2010": {
+      "name": "Mr. Sidney Mayer",
+      "flagged": false,
+      "gender": "M",
+      "dob": "1975-12-17",
+      "dateRange": "2008-2016",
+      "valueCount": 45,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "94b5b3a4-fde0-4e2f-8c17-5416a7076feb"
+	 }
+      ]
+   },
+   "2011": {
+      "name": "Mr. Ivan Pfannerstill",
+      "flagged": false,
+      "gender": "M",
+      "dob": "1999-04-15",
+      "dateRange": "2007-2017",
+      "valueCount": 73,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "053fc287-1d24-4798-952e-f491982bbc1d"
+	 }
+      ]
+   },
+   "2012": {
+      "name": "Mrs. Carlee Jones",
+      "flagged": false,
+      "gender": "F",
+      "dob": "1944-10-05",
+      "dateRange": "1963-2016",
+      "valueCount": 94,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "357ad270-a564-4a90-a319-a881406c1b55"
+	 }
+      ]
+   },
+   "2013": {
+      "name": "Mrs. Barabara Thiel",
+      "flagged": false,
+      "gender": "F",
+      "dob": "1936-03-01",
+      "dateRange": "1950-2016",
+      "valueCount": 83,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "2c4c5104-6d23-4c0a-97e9-bd229fc3559c"
+	 }
+      ]
+   },
+   "2014": {
+      "name": "Mrs. Shondra Hauck",
+      "flagged": false,
+      "gender": "F",
+      "dob": "1987-06-25",
+      "dateRange": "1996-2017",
+      "valueCount": 64,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "7275d2a8-9cab-4187-80dd-50f4a0171099"
+	 }
+      ]
+   },
+   "2015": {
+      "name": "Mrs. Thomasena Rosenbaum",
+      "flagged": false,
+      "gender": "F",
+      "dob": "1935-06-26",
+      "dateRange": "1946-2008",
+      "valueCount": 45,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "07880518-57a7-483f-aa21-22c4d9390a7f"
+	 }
+      ]
+   },
+   "2016": {
+      "name": "Mr. Dalton Hahn",
+      "flagged": false,
+      "gender": "M",
+      "dob": "1978-10-19",
+      "dateRange": "1979-2016",
+      "valueCount": 64,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "3fdbc98f-4b04-4ac2-8e59-b4a66993c76f"
+	 }
+      ]
+   },
+   "2017": {
+      "name": "Mr. Stan Borer",
+      "flagged": false,
+      "gender": "M",
+      "dob": "1969-01-22",
+      "dateRange": "1970-2016",
+      "valueCount": 32,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "9821ab75-fc3f-47c5-a306-5961988a7a92"
+	 }
+      ]
+   },
+   "2018": {
+      "name": "Mr. Kraig White",
+      "flagged": false,
+      "gender": "M",
+      "dob": "1961-12-17",
+      "dateRange": "1984-2016",
+      "valueCount": 117,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "1a8ba720-7e93-4884-8d54-eaff2986e457"
+	 }
+      ]
+   },
+   "2019": {
+      "name": "Patrick Stracke",
+      "flagged": false,
+      "gender": "M",
+      "dob": "1999-08-10",
+      "dateRange": "2007-2016",
+      "valueCount": 59,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "2325c3b4-a94c-4170-8ef6-3354fc1b18b8"
+	 }
+      ]
+   },
+   "2020": {
+      "name": "Mrs. Chara Maggio",
+      "flagged": false,
+      "gender": "F",
+      "dob": "1963-01-15",
+      "dateRange": "1967-2016",
+      "valueCount": 63,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "22488842-c0a8-495e-b3a0-dbb05e986bda"
+	 }
+      ]
+   },
+   "2021": {
+      "name": "Mrs. Loreen Block",
+      "flagged": false,
+      "gender": "F",
+      "dob": "1978-05-21",
+      "dateRange": "1979-2015",
+      "valueCount": 72,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "d52b2971-23af-4b8c-adf6-f6e00874012b"
+	 }
+      ]
+   },
+   "2022": {
+      "name": "Mrs. Mina Wisoky",
+      "flagged": false,
+      "gender": "F",
+      "dob": "1932-12-16",
+      "dateRange": "1951-1951",
+      "valueCount": 2,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "3ad507b0-db34-4bb8-822a-d59b807360bc"
+	 }
+      ]
+   },
+   "2023": {
+      "name": "Val Conroy",
+      "flagged": false,
+      "gender": "M",
+      "dob": "2013-03-06",
+      "dateRange": "2013-2017",
+      "valueCount": 76,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "d90b026d-86e3-49ce-98a7-0da3410473a3"
+	 }
+      ]
+   },
+   "2024": {
+      "name": "Mr. Hai Champlin",
+      "flagged": false,
+      "gender": "M",
+      "dob": "1963-12-25",
+      "dateRange": "1964-2016",
+      "valueCount": 88,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "f0462936-eb4b-4da1-b45a-fbd96ebf8ccb"
+	 }
+      ]
+   },
+   "2025": {
+      "name": "Johnny Stewart",
+      "flagged": false,
+      "gender": "M",
+      "dob": "1976-12-05",
+      "dateRange": "2015-2015",
+      "valueCount": 1,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "SMART-PROMs-65"
+	 }
+      ]
+   },
+   "2026": {
+      "name": "Ben Moen",
+      "flagged": false,
+      "gender": "M",
+      "dob": "2002-01-23",
+      "dateRange": "2007-2017",
+      "valueCount": 71,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "b5502251-75ea-43c3-934d-5d4e784d2bfe"
+	 }
+      ]
+   },
+   "2027": {
+      "name": "Mrs. Melissia Kautzer",
+      "flagged": false,
+      "gender": "F",
+      "dob": "1981-07-22",
+      "dateRange": "1985-2017",
+      "valueCount": 51,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "6524a54c-c0ba-448e-b7a8-6838ae8613cd"
+	 }
+      ]
+   },
+   "2028": {
+      "name": "Mrs. Jin Yundt",
+      "flagged": false,
+      "gender": "F",
+      "dob": "1990-06-26",
+      "dateRange": "1991-2017",
+      "valueCount": 78,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "1c5cc6fd-679a-4fa7-8cc5-0e667707102d"
+	 }
+      ]
+   },
+   "2029": {
+      "name": "Mr. Kent Runolfsdottir",
+      "flagged": false,
+      "gender": "M",
+      "dob": "1982-03-28",
+      "dateRange": "1985-2015",
+      "valueCount": 163,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "bf741609-057b-45ed-bcab-aceaebe4f911"
+	 }
+      ]
+   },
+   "2030": {
+      "name": "Mr. Emmett Kuhic",
+      "flagged": false,
+      "gender": "M",
+      "dob": "1965-05-31",
+      "dateRange": "1991-2017",
+      "valueCount": 104,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "f31b77c2-ea43-4e0f-9975-376af2c681d7"
+	 }
+      ]
+   },
+   "2031": {
+      "name": "Ms. Janella Barrows",
+      "flagged": false,
+      "gender": "F",
+      "dob": "1925-09-19",
+      "dateRange": "1939-1954",
+      "valueCount": 5,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "bc84d9ba-c9a5-4a42-9382-e0601f1d320a"
+	 }
+      ]
+   },
+   "2032": {
+      "name": "Gerard Volkman",
+      "flagged": false,
+      "gender": "M",
+      "dob": "2002-09-16",
+      "dateRange": "2004-2017",
+      "valueCount": 100,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "08eb37b0-7fbd-44c1-984a-8a4d3ab3927e"
+	 }
+      ]
+   },
+   "2033": {
+      "name": "Ms. Malinda Lubowitz",
+      "flagged": false,
+      "gender": "F",
+      "dob": "1928-03-02",
+      "dateRange": "1946-1967",
+      "valueCount": 7,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "488c3d93-e0f7-4c4b-8511-8bb7b353ec35"
+	 }
+      ]
+   },
+   "2034": {
+      "name": "Ms. Zola Pfannerstill",
+      "flagged": false,
+      "gender": "F",
+      "dob": "1966-09-19",
+      "dateRange": "1985-2016",
+      "valueCount": 70,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "82eaeb43-5e94-4ab4-a9e1-f7dcb4665d02"
+	 }
+      ]
+   },
+   "2035": {
+      "name": "Mr. Parker Littel",
+      "flagged": false,
+      "gender": "M",
+      "dob": "1979-05-11",
+      "dateRange": "1998-2017",
+      "valueCount": 31,
+      "providers": [
+         {
+	    "providerName": "r3.smarthealthit.org",
+	    "patientId": "e7e0bcbf-1989-4ddb-b1d6-543d5a9f2e62"
+	 }
       ]
    }
 }
