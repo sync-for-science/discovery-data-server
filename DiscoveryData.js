@@ -2,7 +2,7 @@
 
 // S4S Discovery Data Services
 // File: DiscoveryData.js
-const version = '20180727';
+const version = '20180802';
 
 // Required modules
 const restify = require('restify');
@@ -66,6 +66,7 @@ process.on('SIGINT', function () {
 var isReady = {};
 util.setNotReady(isReady, 'providers');
 util.setNotReady(isReady, 'participants');
+util.setNotReady(isReady, 'reference');
 
 // ---------- Document the available routes --------------------
 server.get('/', documentRoutes);
@@ -99,6 +100,18 @@ participants.on('ready', function () {
 server.get('/participants', participants.participants);
 server.get('/participants/:id', participants.participantData);
 
+// ---------- Configure the 'reference' service --------------------
+var reference = require ('./reference');
+reference.on('ready', function () {
+    // Check whether all services are ready
+    if (util.setReady(isReady, 'reference')) {
+	// Yes -- start listening for requests
+	listen();
+    }
+});
+
+// Allowed 'reference' methods and routes
+server.get('/reference/:provider/:referencePath', reference.reference);
 
 //---------------------------------------------------------------------------------
 
