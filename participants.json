@@ -157,7 +157,11 @@
       "valueCount": 31,
       "providers": [
          {
-	    "providerName": "r3.smarthealthit.org",
+	    "providerName": "Forest Hills Hospital",
+	    "patientId": "faf193dc-7950-4994-990b-cc5b977631b7"
+	 },
+         {
+	    "providerName": "Blue Valley Health Center",
 	    "patientId": "faf193dc-7950-4994-990b-cc5b977631b7"
 	 }
       ]
@@ -171,7 +175,7 @@
       "valueCount": 50,
       "providers": [
          {
-	    "providerName": "r3.smarthealthit.org",
+	    "providerName": "Blue Valley Health Center",
 	    "patientId": "33c208e1-fe69-48ee-9443-355cd451d4b5"
 	 }
       ]
@@ -437,7 +441,23 @@
       "valueCount": 72,
       "providers": [
          {
-	    "providerName": "r3.smarthealthit.org",
+	    "providerName": "Alberdene Health Clinic",
+	    "patientId": "d52b2971-23af-4b8c-adf6-f6e00874012b"
+	 },
+         {
+	    "providerName": "Athenville Public Hospital",
+	    "patientId": "d52b2971-23af-4b8c-adf6-f6e00874012b"
+	 },
+         {
+	    "providerName": "Broxton Hospital",
+	    "patientId": "d52b2971-23af-4b8c-adf6-f6e00874012b"
+	 },
+         {
+	    "providerName": "Fetters Hill Community Clinic",
+	    "patientId": "d52b2971-23af-4b8c-adf6-f6e00874012b"
+	 },
+         {
+	    "providerName": "Gardendale Medical Center",
 	    "patientId": "d52b2971-23af-4b8c-adf6-f6e00874012b"
 	 }
       ]

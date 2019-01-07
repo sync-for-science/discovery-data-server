@@ -2,7 +2,7 @@
 
 // S4S Discovery Data Server
 // File: config.js
-const version = '20180727';
+const version = '20181214';
 
 // Required modules
 const argv = require('optimist').argv;
@@ -37,7 +37,16 @@ if (argv.dev || argv.development) {
 }
 
 // ----- Providers & Participants -----
+
+// Get the object representing all providers:
+//   { "provider1-name": { group: "group-name", "base: "url", path: "path", refPath: "path", randLow: "low", randHigh: "high" },
+//     ... }
 config.providers = JSON.parse(fs.readFileSync('providers.json'));
+
+// Get the object representing all participants:
+//   { "id1": { name: "name", flagged: true/false, gender: F/M, dob: "date", dateRange: year1-year2, valueCount: num,
+//              providers: [{ providerName: "name", patientId: "id"}, ... ]},
+//     ... }
 config.participants = JSON.parse(fs.readFileSync('participants.json'));
 
 // Return the array of available provider names
@@ -49,11 +58,44 @@ config.providerNames = function () {
    return names;
 }
 
-// Return the array of providers for this participant (each { providerName: "name", patientId: "id" })
+// Return the array of providers for this id/participant (each { providerName: "name", patientId: "id" })
 config.providersForParticipant = function (id) {
    const thisParticipant = config.participants[id];
    return thisParticipant ? thisParticipant.providers : [];
 }
 
+// Return the array of group names for this id/participant
+config.groupsForParticipant = function (id) {
+   const thisParticipant = config.participants[id];
+   const providersForParticipant = thisParticipant ? thisParticipant.providers : [];
+   let groupNames = [];
+   for (let thisProvider of providersForParticipant) {
+      let providerInfo = config.providers[thisProvider.providerName];
+      if (providerInfo) {
+	 let groupName = providerInfo.group;
+	 if (groupName && !groupNames.includes(groupName)) {
+	    groupNames.push(groupName);
+	 }
+      }
+   }
+   return groupNames;
+}
+
+// Return the array of providers for this participant and group (each { providerName: "name", patientId: "patient-id", randLow: "low", randHigh: "high" })
+config.providersForGroup = function (id, groupName) {
+   let providersForGroup = [];
+   for (let providerName in config.providers) {
+      let thisProvider = config.providers[providerName];
+      if (thisProvider.group === groupName) {
+	 let thisParticipant = config.participants[id];
+	 let providerForParticipant = thisParticipant.providers.find(elt => elt.providerName === providerName);
+	 if (providerForParticipant) {
+	    providersForGroup.push({ providerName: providerName, patientId: providerForParticipant.patientId,
+				     randLow: thisProvider.randLow, randHigh: thisProvider.randHigh });
+	 }
+      }
+   }
+   return providersForGroup;
+}
 
 module.exports = config;

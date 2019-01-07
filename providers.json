@@ -13,5 +13,63 @@
       "base": "https://r3.smarthealthit.org",
       "path": "/Patient/{0}/$everything?_count=10000",
       "refPath": "/{0}"
+   },
+
+   "Forest Hills Hospital": {
+      "group": "r3.smarthealthit.org-1",
+      "base": "https://r3.smarthealthit.org",
+      "path": "/Patient/{0}/$everything?_count=10000",
+      "refPath": "/{0}",
+      "randLow": "0.0",
+      "randHigh": "0.6"
+   },
+   "Blue Valley Health Center": {
+      "group": "r3.smarthealthit.org-1",
+      "base": "https://r3.smarthealthit.org",
+      "path": "/Patient/{0}/$everything?_count=10000",
+      "refPath": "/{0}",
+      "randLow": "0.3",
+      "randHigh": "1.0"
+   },
+
+   "Alberdene Health Clinic": {
+      "group": "r3.smarthealthit.org-2",
+      "base": "https://r3.smarthealthit.org",
+      "path": "/Patient/{0}/$everything?_count=10000",
+      "refPath": "/{0}",
+      "randLow": "0.0",
+      "randHigh": "0.6"
+   },
+   "Athenville Public Hospital": {
+      "group": "r3.smarthealthit.org-2",
+      "base": "https://r3.smarthealthit.org",
+      "path": "/Patient/{0}/$everything?_count=10000",
+      "refPath": "/{0}",
+      "randLow": "0.3",
+      "randHigh": "0.6"
+   },
+   "Broxton Hospital": {
+      "group": "r3.smarthealthit.org-2",
+      "base": "https://r3.smarthealthit.org",
+      "path": "/Patient/{0}/$everything?_count=10000",
+      "refPath": "/{0}",
+      "randLow": "0.4",
+      "randHigh": "0.7"
+   },
+   "Fetters Hill Community Clinic": {
+      "group": "r3.smarthealthit.org-2",
+      "base": "https://r3.smarthealthit.org",
+      "path": "/Patient/{0}/$everything?_count=10000",
+      "refPath": "/{0}",
+      "randLow": "0.5",
+      "randHigh": "0.8"
+   },
+   "Gardendale Medical Center": {
+      "group": "r3.smarthealthit.org-2",
+      "base": "https://r3.smarthealthit.org",
+      "path": "/Patient/{0}/$everything?_count=10000",
+      "refPath": "/{0}",
+      "randLow": "0.5",
+      "randHigh": "1.0"
    }
 }
