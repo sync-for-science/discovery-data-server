@@ -39,7 +39,7 @@ if (argv.dev || argv.development) {
 // ----- Providers & Participants -----
 
 // Get the object representing all providers:
-//   { "provider1-name": { group: "group-name", "base: "url", path: "path", refPath: "path", randLow: "low", randHigh: "high" },
+//   { "provider1-name": { group: "group-name", "base: "url", path: "path", refPath: "path", useOrg: true|false, randLow: "low", randHigh: "high" },
 //     ... }
 config.providers = JSON.parse(fs.readFileSync('providers.json'));
 

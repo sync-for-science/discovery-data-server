@@ -2,7 +2,7 @@
 
 // S4S Discovery Data Server Participants web service
 // File: participants.js
-const version = '20181219';
+const version = '20190410';
 
 // Required modules
 const restifyClients = require('restify-clients');
@@ -62,21 +62,49 @@ module.exports.participantData = function (req, res, next) {
 // SUPPORT FUNCTIONS
 
 // Get all participant data for :id
+//   Note: this assumes unique org names!
 function getAllParticipantData (id, callback) {
-   let groupReqStatus = {};	// Status of all requests to groups
-   let clients = {};		// JSON clients making group requests
    let participantData = {};	// Results
 
-   // Get array of group names for this participant
+   // Get array of group names for this participant (id)
    let groupsForParticipant = config.groupsForParticipant(id);
 
-   if (groupsForParticipant.length === 0) {
-      // Try "old" (no groups) format
-      getAllParticipantDataOld(id, callback);
+   if (groupsForParticipant.length > 0) {
+      // Organize resources by group members
+//      process.stdout.write('By group: ' + groupsForParticipant.length + '\n');
+      getAllParticipantDataForGroups(participantData, groupsForParticipant, id, callback);
+   }
 
-//      // Invalid participant or no groups -- return empty obj
-//      callback({});
-   } 
+   // Get the array of non-group providers for this participant (id)
+   let providersForParticipant = config.providersForParticipant(id).filter(prov => !config.providers[prov.providerName].group);
+
+   // Divide into useOrg and not useOrg
+   let providersForParticipantUseOrg = providersForParticipant.filter(prov => providers[prov.providerName].useOrg);
+   let providersForParticipantNoOrg = providersForParticipant.filter(prov => !providers[prov.providerName].useOrg);
+
+   if (providersForParticipantUseOrg.length > 0) {
+      // Organize resources by providing organization
+//      process.stdout.write('By org: ' + providersForParticipantUseOrg.length + '\n');
+      getAllParticipantDataNoGroups(participantData, providersForParticipantUseOrg, id, organizeResources, callback);
+   }
+
+   if (providersForParticipantNoOrg.length > 0) {
+      // Organize resources using "old" (no groups/org) format
+//      process.stdout.write('Old: ' + providersForParticipantNoOrg.length + '\n');
+      getAllParticipantDataNoGroups(participantData, providersForParticipantNoOrg, id,
+				    (participantData, defaultName, participantId, obj) => participantData[defaultName] = obj, callback);
+   }
+      
+   if (groupsForParticipant.length === 0 && providersForParticipant.length === 0) {
+      // Invalid participant or no providers -- return empty obj
+      callback({});
+   }	 
+}
+
+// Get all participant data for :id (with GROUPS)
+function getAllParticipantDataForGroups (participantData, groupsForParticipant, id, callback) {
+   let groupReqStatus = {};	// Status of all requests to groups
+   let clients = {};		// JSON clients making group requests
 
    for (let groupName of groupsForParticipant) {
       // Get array of providers for this participant and group (each: { providerName: "name", patientId: "id", randLow: "low", randHigh: "high" })
@@ -147,16 +175,6 @@ function getAllParticipantData (id, callback) {
 	    }
 
 	 } else {
-//	    // Create a PRN (Pseudo Random Number) generator using the group name as seed
-//	    let prn = seedrandom(groupNameFromRequest);
-//
-//	    // Generate PRN array to map resources
-//	    let prnArray = [];
-//	    for (let i = 0; i < obj.entry.length; i++) {
-//	       prnArray[i] = prn();
-//	    }
-
-	    // Find the Patient resource
 	    let patientResourceIndex = obj.entry.findIndex(elt => elt.resource.resourceType === 'Patient');
 	     
 	    // Distribute the resources across the "providers"
@@ -178,12 +196,6 @@ function getAllParticipantData (id, callback) {
 		  }
 	       );
 
-//	       // Return the Patient resource plus the resources matching the random range for this "provider"
-//	       participantData[provider.providerName].entry = participantData[provider.providerName].entry.filter(
-//		  (elt,index) => (index === patientResourceIndex) ||
-//				 (prnArray[index] >= provider.randLow && prnArray[index] < provider.randHigh)
-//	       );
-
 	       // Update the resource count
 	       participantData[provider.providerName].total = participantData[provider.providerName].entry.length;
 	    }
@@ -198,79 +210,148 @@ function getAllParticipantData (id, callback) {
    }
 }
 
-// [OLD] Get all participant data for :id (NO GROUPS)
-function getAllParticipantDataOld (id, callback) {
-   var providerReqStatus = {};	// Status of all requests to providers
-   var clients = {};		// JSON clients making provider requests
-   var participantData = {};	// Results
+// Get all participant data for :id
+function getAllParticipantDataNoGroups (participantData, providersForParticipant, id, storeResourcesFn, callbackFn) {
+   let providerReqStatus = {};	// Status of all requests to providers
+   let clients = {};		// JSON clients making provider requests
 
-   // Find the providers "registered" for this participant (id)
-   var providersForParticipant = config.providersForParticipant(id);
+   for (let thisProvider of providersForParticipant) {
 
-   if (providersForParticipant.length == 0) {
-      // Invalid participant or no providers -- return empty obj
-      callback({});
+      let providerName, providerUrlBase, providerUrlPath;
+      try {
+         providerName = thisProvider.providerName;
+         providerUrlBase = providers[providerName].base;
+         providerUrlPath = providers[providerName].path.format(thisProvider.patientId);
+      } catch (e) {
+	 // Invalid/malformed provider
+	 let errResponse = {};
+	 errResponse[thisProvider.providerName] = { error: 'Invalid/malformed provider: ' + thisProvider.providerName };
+	 callbackFn(errResponse);
+	 return;
+      }
 
-   } else {
-      for (let thisProvider of providersForParticipant) {
+      // Create JSON client for accessing this provider
+      let providerClient = restifyClients.createJsonClient({
+	 url: providerUrlBase,
+	 headers: { provider: providerName },	// Used to associate response with the correct provider/request
+	 version: '*',
+	 retry: { 
+	    minTimeout: config.minRetryTimeout,
+	    retries: config.retries
+	 },
+	 connectTimeout: config.providerConnectTimeout,
+	 requestTimeout: config.providerRequestTimeout
+      });
 
-	 let providerName, providerUrlBase, providerUrlPath;
-	 try {
-            providerName = thisProvider.providerName;
-            providerUrlBase = providers[providerName].base;
-            providerUrlPath = providers[providerName].path.format(thisProvider.patientId);
-	 } catch (e) {
-	     // Invalid/malformed provider
-	     let errResponse = {};
-	     errResponse[thisProvider.providerName] = { error: 'Invalid/malformed provider: ' + thisProvider.providerName };
-	     callback(errResponse);
-	     return;
+      // Add to client collection
+      clients[providerName] = providerClient;
+
+      // Status of the request to this provider is initially "not ready"
+      util.setNotReady(providerReqStatus, providerName)
+
+      // Make the request to the provider
+      providerClient.get(providerUrlPath, function (err, req, res, obj) {
+
+//	 const nodeUtil = require('util');
+//	 const fs = require('fs');
+//	 for (let item of [{name:'req',val:req}, {name:'res',val:res}, {name:'obj',val:obj}]) {
+//	    fs.writeFile('/tmp/restify-{0}-dump.txt'.format(item.name), nodeUtil.inspect(item.val, {showHidden:true, depth:null}), function(err) {
+//	       if (err) {
+//	          return console.log(err);
+//	       }
+//	    });
+//	 };
+
+	 // Lookup provider name (ASSUMES: req._headers will be accessible in future versions)
+	 let providerNameFromRequest = req._headers.provider;
+
+	 // Save the response
+	 if (err) {
+	    participantData[providerNameFromRequest] = { error: err, providerName: providerNameFromRequest };   
+	 } else {	 
+	    storeResourcesFn(participantData, providerNameFromRequest, id, obj);
 	 }
 
-         // Create JSON client for accessing this provider
-         let providerClient = restifyClients.createJsonClient({
-	    url: providerUrlBase,
-	    headers: { provider: providerName },	// Used to associate response with the correct provider/request
-	    version: '*',
-	    retry: { 
-	       minTimeout: config.minRetryTimeout,
-	       retries: config.retries
-	    },
-	    connectTimeout: config.providerConnectTimeout,
-	    requestTimeout: config.providerRequestTimeout
-         });
+	 // Indicate results from this provider are "ready"
+	 if (util.setReady(providerReqStatus, providerNameFromRequest)) {
+	    // Results from ALL providers are "ready" -- return collected data
+	    callbackFn(participantData);
+	 }
+      });
+   }
+}
 
-         // Add to client collection
-         clients[providerName] = providerClient;
+// Organize resources by the providing organization
+function organizeResources(participantData, defaultName, participantId, obj) {
+   let patient;		// Patient resource
+   let encs = {};	// Collection of encounters ( Encounter/{id}: "Organization/{id}" )
+   let orgs = {};	// Collection of organizations ( Organization/{id}: "org name" or {GUID}: "org name" )
 
-         // Status of the request to this provider is initially "not ready"
-         util.setNotReady(providerReqStatus, providerName)
+   // First pass -- collect Patient, Encounters, Organizations
+   for (let elt of obj.entry) {
+      switch (elt.resource.resourceType) {
+	 case 'Patient':
+	    patient = elt;
+	    break;
 
-         // Make the request to the provider
-         providerClient.get(providerUrlPath, function (err, req, res, obj) {
+	 case 'Encounter':
+	    encs['Encounter/'+elt.resource.id] = elt.resource.serviceProvider.reference;
+	    break;
 
-//	    const nodeUtil = require('util');
-//	    const fs = require('fs');
-//	    for (let item of [{name:'req',val:req}, {name:'res',val:res}, {name:'obj',val:obj}]) {
-//	       fs.writeFile('/tmp/restify-{0}-dump.txt'.format(item.name), nodeUtil.inspect(item.val, {showHidden:true, depth:null}), function(err) {
-//	          if (err) {
-//		     return console.log(err);
-//		  }
-//	       });
-//	    };
+	 case 'Organization':
+	    orgs['Organization/'+elt.resource.id] = elt.resource.name;		// By org id
+	    orgs[elt.resource.identifier[0].value] = elt.resource.name;		// By GUID/hash
+	    break;
 
-	    // Lookup provider name (ASSUMES: req._headers will be accessible in future versions)
-	    let providerNameFromRequest = req._headers.provider;
-
-	    // Save the response
-	    participantData[providerNameFromRequest] = err ? { error: err, providerName: providerNameFromRequest } : obj;
-
-	    // Indicate results from this provider are "ready"
-	    if (util.setReady(providerReqStatus, providerNameFromRequest)) {
-	       // Results from ALL providers are "ready" -- return collected data
-	       callback(participantData);
-	    }
-         });
+	 default:
+	    break;
       }
    }
+
+   // Setup results structure
+   let results = {};
+   for (let org in orgs) {
+      let orgName = orgs[org];
+      if (!results[orgName]) {
+	 results[orgName] = {
+	    resourceType: 'Bundle',
+	    entry: [ patient ]		// first resource for this individual for each provider/organization
+	 };
+      }
+   }
+
+   // Second pass -- collect results by actual provider name
+   for (let elt of obj.entry) {
+      switch (elt.resource.resourceType) {
+	 case 'Patient':
+	 case 'Organization':
+	 case 'Practitioner':
+	    break;
+
+	 case 'Encounter':
+	    results[orgs[elt.resource.serviceProvider.reference]].entry.push(elt);
+	    break;
+
+	 case 'Claim':
+	    results[orgs[elt.resource.organization.reference]].entry.push(elt);
+	    break;
+
+	 case 'ExplanationOfBenefit':
+	    results[orgs[elt.resource.organization.identifier.value]].entry.push(elt);
+	    break;
+
+	 default:
+	    if (elt.resource.encounter) {
+	       results[orgs[encs[elt.resource.encounter.reference]]].entry.push(elt);
+	    } else if (elt.resource.context) {
+	       results[orgs[encs[elt.resource.context.reference]]].entry.push(elt);
+	    } else {
+//	       process.stdout.write(`NO REFERENCE (${participantId}): ${elt.resource.resourceType} ID: ${elt.resource.id}\n`);
+	    }
+	    break;
+      }
+   }
+
+   // Merge results into collected data
+   Object.assign(participantData, results);
 }

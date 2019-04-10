@@ -15,6 +15,13 @@
       "refPath": "/{0}"
    },
 
+   "Synthea": {
+      "base": "http://165.227.51.4:9007",
+      "path": "/baseDstu3/Patient/{0}/$everything?_count=10000",
+      "refPath": "/baseDstu3/{0}",
+      "useOrg": "true"
+   },
+
    "Forest Hills Hospital": {
       "group": "r3.smarthealthit.org-1",
       "base": "https://r3.smarthealthit.org",
