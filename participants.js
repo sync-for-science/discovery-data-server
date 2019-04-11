@@ -285,6 +285,7 @@ function getAllParticipantDataNoGroups (participantData, providersForParticipant
 function organizeResources(participantData, defaultName, participantId, obj) {
    let patient;		// Patient resource
    let encs = {};	// Collection of encounters ( Encounter/{id}: "Organization/{id}" )
+   let claims = {};	// Collection of claims ( Claim/{id}: "Organization/{id}" )
    let orgs = {};	// Collection of organizations ( Organization/{id}: "org name" or {GUID}: "org name" )
 
    // First pass -- collect Patient, Encounters, Organizations
@@ -296,6 +297,10 @@ function organizeResources(participantData, defaultName, participantId, obj) {
 
 	 case 'Encounter':
 	    encs['Encounter/'+elt.resource.id] = elt.resource.serviceProvider.reference;
+	    break;
+
+	 case 'Claim':
+	    claims['Claim/'+elt.resource.id] = elt.resource.organization.reference;
 	    break;
 
 	 case 'Organization':
@@ -337,7 +342,13 @@ function organizeResources(participantData, defaultName, participantId, obj) {
 	    break;
 
 	 case 'ExplanationOfBenefit':
-	    results[orgs[elt.resource.organization.identifier.value]].entry.push(elt);
+	    if (elt.resource.organization) {
+	       results[orgs[elt.resource.organization.identifier.value]].entry.push(elt);
+	    } else if (elt.resource.claim) {
+	       results[orgs[claims[elt.resource.claim.reference]]].entry.push(elt);
+	    } else {
+	       process.stdout.write(`NO REFERENCE (${participantId}): ExplanationOfBenefit ID: ${elt.resource.id}\n`);
+	    }
 	    break;
 
 	 default:
@@ -346,7 +357,7 @@ function organizeResources(participantData, defaultName, participantId, obj) {
 	    } else if (elt.resource.context) {
 	       results[orgs[encs[elt.resource.context.reference]]].entry.push(elt);
 	    } else {
-//	       process.stdout.write(`NO REFERENCE (${participantId}): ${elt.resource.resourceType} ID: ${elt.resource.id}\n`);
+	       process.stdout.write(`NO REFERENCE (${participantId}): ${elt.resource.resourceType} ID: ${elt.resource.id}\n`);
 	    }
 	    break;
       }
