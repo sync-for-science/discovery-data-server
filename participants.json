@@ -1,7 +1,7 @@
 {
    "1001": {
       "name": "Amy V. Shaw",
-      "flagged": false,
+      "lists": ["1000 series"],
       "gender": "F",
       "dob": "2007-03-20",
       "dateRange": "2007-2011",
@@ -19,7 +19,7 @@
    },
    "1002": {
       "name": "Joseph I. Ross",
-      "flagged": false,
+      "lists": ["1000 series"],
       "gender": "M",
       "dob": "2003-10-02",
       "dateRange": "2004-2005",
@@ -37,7 +37,7 @@
    },
    "1003": {
       "name": "Robert P. Hill",
-      "flagged": false,
+      "lists": ["1000 series"],
       "gender": "M",
       "dob": "1953-10-27",
       "dateRange": "2005-2005",
@@ -51,7 +51,7 @@
    },
    "1004": {
       "name": "Patrick G. Taylor",
-      "flagged": false,
+      "lists": ["1000 series"],
       "gender": "M",
       "dob": "2004-10-15",
       "dateRange": "2005-2005",
@@ -65,7 +65,7 @@
    },
    "1005": {
       "name": "Joshua P. Williams",
-      "flagged": false,
+      "lists": ["1000 series"],
       "gender": "M",
       "dob": "1954-08-21",
       "dateRange": "2000-2009",
@@ -79,7 +79,7 @@
    },
    "1006": {
       "name": "Carol U. Hughes",
-      "flagged": false,
+      "lists": ["1000 series"],
       "gender": "F",
       "dob": "1949-11-04",
       "dateRange": "2004-2006",
@@ -93,7 +93,7 @@
    },
    "1007": {
       "name": "Daniel A. Johnson",
-      "flagged": false,
+      "lists": ["1000 series"],
       "gender": "M",
       "dob": "1995-02-22",
       "dateRange": "2008-2009",
@@ -107,7 +107,7 @@
    },
    "1008": {
       "name": "Brian Q. Gracia",
-      "flagged": false,
+      "lists": ["1000 series"],
       "gender": "M",
       "dob": "1965-06-22",
       "dateRange": "1997-1997",
@@ -121,7 +121,7 @@
    },
    "1009": {
       "name": "Stephan P. Graham",
-      "flagged": false,
+      "lists": ["1000 series"],
       "gender": "M",
       "dob": "1945-05-01",
       "dateRange": "2002-2003",
@@ -135,7 +135,7 @@
    },
    "1010": {
       "name": "Daniel X. Adams",
-      "flagged": false,
+      "lists": ["1000 series"],
       "gender": "M",
       "dob": "1925-12-23",
       "dateRange": "1997-1997",
@@ -150,7 +150,7 @@
 
    "2001": {
       "name": "Jacque Jerde",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "F",
       "dob": "2016-08-30",
       "dateRange": "2016-2017",
@@ -168,7 +168,7 @@
    },
    "2002": {
       "name": "Mrs. Greta Emard",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "F",
       "dob": "1981-01-01",
       "dateRange": "1982-2017",
@@ -182,7 +182,7 @@
    },
    "2003": {
       "name": "Rebecca Palmer",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "F",
       "dob": "1952-04-23",
       "dateRange": "2015-2015",
@@ -196,7 +196,7 @@
    },
    "2004": {
       "name": "Scotty Waters",
-      "flagged": true,
+      "lists": ["2000 series"],
       "gender": "M",
       "dob": "2016-01-13",
       "dateRange": "2016-2017",
@@ -210,7 +210,7 @@
    },
    "2005": {
       "name": "Mrs. Joshua Kling",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "F",
       "dob": "1926-02-09",
       "dateRange": "1937-2002",
@@ -224,7 +224,7 @@
    },
    "2006": {
       "name": "Mr. Bryan Mayer",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "M",
       "dob": "1957-03-07",
       "dateRange": "1966-2017",
@@ -238,7 +238,7 @@
    },
    "2007": {
       "name": "Christen Turner",
-      "flagged": true,
+      "lists": ["2000 series"],
       "gender": "F",
       "dob": "2003-06-13",
       "dateRange": "2007-2017",
@@ -252,7 +252,7 @@
    },
    "2008": {
       "name": "Mr. Kris Mohr",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "M",
       "dob": "1989-08-19",
       "dateRange": "1993-2015",
@@ -266,7 +266,7 @@
    },
    "2009": {
       "name": "Mr. Fletcher Howell",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "M",
       "dob": "1918-11-14",
       "dateRange": "1969-1990",
@@ -280,7 +280,7 @@
    },
    "2010": {
       "name": "Mr. Sidney Mayer",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "M",
       "dob": "1975-12-17",
       "dateRange": "2008-2016",
@@ -294,7 +294,7 @@
    },
    "2011": {
       "name": "Mr. Ivan Pfannerstill",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "M",
       "dob": "1999-04-15",
       "dateRange": "2007-2017",
@@ -308,7 +308,7 @@
    },
    "2012": {
       "name": "Mrs. Carlee Jones",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "F",
       "dob": "1944-10-05",
       "dateRange": "1963-2016",
@@ -322,7 +322,7 @@
    },
    "2013": {
       "name": "Mrs. Barabara Thiel",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "F",
       "dob": "1936-03-01",
       "dateRange": "1950-2016",
@@ -336,7 +336,7 @@
    },
    "2014": {
       "name": "Mrs. Shondra Hauck",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "F",
       "dob": "1987-06-25",
       "dateRange": "1996-2017",
@@ -350,7 +350,7 @@
    },
    "2015": {
       "name": "Mrs. Thomasena Rosenbaum",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "F",
       "dob": "1935-06-26",
       "dateRange": "1946-2008",
@@ -364,7 +364,7 @@
    },
    "2016": {
       "name": "Mr. Dalton Hahn",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "M",
       "dob": "1978-10-19",
       "dateRange": "1979-2016",
@@ -378,7 +378,7 @@
    },
    "2017": {
       "name": "Mr. Stan Borer",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "M",
       "dob": "1969-01-22",
       "dateRange": "1970-2016",
@@ -392,7 +392,7 @@
    },
    "2018": {
       "name": "Mr. Kraig White",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "M",
       "dob": "1961-12-17",
       "dateRange": "1984-2016",
@@ -406,7 +406,7 @@
    },
    "2019": {
       "name": "Patrick Stracke",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "M",
       "dob": "1999-08-10",
       "dateRange": "2007-2016",
@@ -420,7 +420,7 @@
    },
    "2020": {
       "name": "Mrs. Chara Maggio",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "F",
       "dob": "1963-01-15",
       "dateRange": "1967-2016",
@@ -434,7 +434,7 @@
    },
    "2021": {
       "name": "Mrs. Loreen Block",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "F",
       "dob": "1978-05-21",
       "dateRange": "1979-2015",
@@ -464,7 +464,7 @@
    },
    "2022": {
       "name": "Mrs. Mina Wisoky",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "F",
       "dob": "1932-12-16",
       "dateRange": "1951-1951",
@@ -478,7 +478,7 @@
    },
    "2023": {
       "name": "Val Conroy",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "M",
       "dob": "2013-03-06",
       "dateRange": "2013-2017",
@@ -492,7 +492,7 @@
    },
    "2024": {
       "name": "Mr. Hai Champlin",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "M",
       "dob": "1963-12-25",
       "dateRange": "1964-2016",
@@ -506,7 +506,7 @@
    },
    "2025": {
       "name": "Johnny Stewart",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "M",
       "dob": "1976-12-05",
       "dateRange": "2015-2015",
@@ -520,7 +520,7 @@
    },
    "2026": {
       "name": "Ben Moen",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "M",
       "dob": "2002-01-23",
       "dateRange": "2007-2017",
@@ -534,7 +534,7 @@
    },
    "2027": {
       "name": "Mrs. Melissia Kautzer",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "F",
       "dob": "1981-07-22",
       "dateRange": "1985-2017",
@@ -548,7 +548,7 @@
    },
    "2028": {
       "name": "Mrs. Jin Yundt",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "F",
       "dob": "1990-06-26",
       "dateRange": "1991-2017",
@@ -562,7 +562,7 @@
    },
    "2029": {
       "name": "Mr. Kent Runolfsdottir",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "M",
       "dob": "1982-03-28",
       "dateRange": "1985-2015",
@@ -576,7 +576,7 @@
    },
    "2030": {
       "name": "Mr. Emmett Kuhic",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "M",
       "dob": "1965-05-31",
       "dateRange": "1991-2017",
@@ -590,7 +590,7 @@
    },
    "2031": {
       "name": "Ms. Janella Barrows",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "F",
       "dob": "1925-09-19",
       "dateRange": "1939-1954",
@@ -604,7 +604,7 @@
    },
    "2032": {
       "name": "Gerard Volkman",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "M",
       "dob": "2002-09-16",
       "dateRange": "2004-2017",
@@ -618,7 +618,7 @@
    },
    "2033": {
       "name": "Ms. Malinda Lubowitz",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "F",
       "dob": "1928-03-02",
       "dateRange": "1946-1967",
@@ -632,7 +632,7 @@
    },
    "2034": {
       "name": "Ms. Zola Pfannerstill",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "F",
       "dob": "1966-09-19",
       "dateRange": "1985-2016",
@@ -646,7 +646,7 @@
    },
    "2035": {
       "name": "Mr. Parker Littel",
-      "flagged": false,
+      "lists": ["2000 series"],
       "gender": "M",
       "dob": "1979-05-11",
       "dateRange": "1998-2017",
@@ -661,7 +661,7 @@
 
    "3001": {
       "name": "Ms. Adela Acuña",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "F",
       "dob": "2000-10-25",
       "dateRange": "2009-2011",
@@ -675,7 +675,7 @@
    },
    "3002": {
       "name": "Mrs. Angelika Kassulke",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "F",
       "dob": "1973-12-30",
       "dateRange": "1974-2013",
@@ -689,7 +689,7 @@
    },
    "3003": {
       "name": "Mrs. Camille White",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "F",
       "dob": "1985-06-21",
       "dateRange": "2003-2013",
@@ -703,7 +703,7 @@
    },
    "3004": {
       "name": "Mrs. Caridad Verdugo",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "F",
       "dob": "1958-10-06",
       "dateRange": "1976-2010",
@@ -717,7 +717,7 @@
    },
    "3005": {
       "name": "Ms. Cassie Ledner",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "F",
       "dob": "1994-02-01",
       "dateRange": "2009-2011",
@@ -731,7 +731,7 @@
    },
    "3006": {
       "name": "Charlotte Turner",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "F",
       "dob": "2001-11-14",
       "dateRange": "2009-2011",
@@ -745,7 +745,7 @@
    },
    "3007": {
       "name": "Mr. Connie Heller",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "M",
       "dob": "1951-06-21",
       "dateRange": "1956-2001",
@@ -759,7 +759,7 @@
    },
    "3008": {
       "name": "Ms. Demetrius Deckow",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "F",
       "dob": "1975-06-17",
       "dateRange": "1976-2009",
@@ -773,7 +773,7 @@
    },
    "3009": {
       "name": "Mr. Edmond Parker",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "M",
       "dob": "1962-10-23",
       "dateRange": "2002-2012",
@@ -787,7 +787,7 @@
    },
    "3010": {
       "name": "Mr. Emilio Dach",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "M",
       "dob": "1949-12-08",
       "dateRange": "1984-2009",
@@ -801,7 +801,7 @@
    },
    "3011": {
       "name": "Fabian Emard",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "M",
       "dob": "2010-04-26",
       "dateRange": "2010-2010",
@@ -815,7 +815,7 @@
    },
    "3012": {
       "name": "Mr. Gilberto Duran",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "M",
       "dob": "1954-09-09",
       "dateRange": "1972-2009",
@@ -829,7 +829,7 @@
    },
    "3013": {
       "name": "Mr. Jackie Armstrong",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "M",
       "dob": "1974-08-05",
       "dateRange": "1989-2013",
@@ -843,7 +843,7 @@
    },
    "3014": {
       "name": "Mr. Jason Miller",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "M",
       "dob": "1997-06-24",
       "dateRange": "1998-2010",
@@ -857,7 +857,7 @@
    },
    "3015": {
       "name": "Mr. José María Gómez",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "M",
       "dob": "1953-12-13",
       "dateRange": "1982-2004",
@@ -871,7 +871,7 @@
    },
    "3016": {
       "name": "Kaitlyn Prohaska",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "F",
       "dob": "2011-07-07",
       "dateRange": "2011-2011",
@@ -885,7 +885,7 @@
    },
    "3017": {
       "name": "Mr. Kendall Mayer",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "M",
       "dob": "1989-08-23",
       "dateRange": "2001-2014",
@@ -899,7 +899,7 @@
    },
    "3018": {
       "name": "Mr. Kenneth Lesch",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "M",
       "dob": "1949-12-08",
       "dateRange": "1981-1998",
@@ -913,7 +913,7 @@
    },
    "3019": {
       "name": "Leeanne Wiza",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "F",
       "dob": "2013-04-14",
       "dateRange": "2013-2013",
@@ -927,7 +927,7 @@
    },
    "3020": {
       "name": "Mrs. Margene Armstrong",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "F",
       "dob": "1950-05-16",
       "dateRange": "1976-2011",
@@ -941,7 +941,7 @@
    },
    "3021": {
       "name": "Mrs. María Teresa Corrales",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "F",
       "dob": "1955-06-30",
       "dateRange": "1960-2011",
@@ -955,7 +955,7 @@
    },
    "3022": {
       "name": "Ms. Marisol Jiménez",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "F",
       "dob": "1951-12-14",
       "dateRange": "1970-2010",
@@ -969,7 +969,7 @@
    },
    "3023": {
       "name": "Ms. Muriel Moen",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "F",
       "dob": "1998-04-13",
       "dateRange": "1998-2009",
@@ -983,7 +983,7 @@
    },
    "3024": {
       "name": "Mrs. Oneida Satterfield",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "F",
       "dob": "1916-05-28",
       "dateRange": "1944-2009",
@@ -997,7 +997,7 @@
    },
    "3025": {
       "name": "Ms. Rosalia Garibay",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "F",
       "dob": "1989-06-18",
       "dateRange": "2008-2009",
@@ -1011,7 +1011,7 @@
    },
    "3026": {
       "name": "Mr. Scot Koch",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "M",
       "dob": "1951-06-21",
       "dateRange": "1969-1995",
@@ -1025,7 +1025,7 @@
    },
    "3027": {
       "name": "Silvia McGlynn",
-      "flagged": false,
+      "lists": ["3000 series"],
       "gender": "F",
       "dob": "2006-04-05",
       "dateRange": "2009-2011",
