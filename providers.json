@@ -1,23 +1,23 @@
 {
    "DSTU2 Provider": {
       "base": "http://165.227.51.4:9002",
-      "path": "/baseDstu2/Patient/{0}/$everything?_count=10000",
+      "path": "/baseDstu2/Patient/{0}/$everything",
       "refPath": "/baseDstu2/{0}"
    },
    "DSTU3 Provider": {
       "base": "http://165.227.51.4:9007",
-      "path": "/baseDstu3/Patient/{0}/$everything?_count=10000",
+      "path": "/baseDstu3/Patient/{0}/$everything",
       "refPath": "/baseDstu3/{0}"
    },
    "r3.smarthealthit.org": {
       "base": "https://r3.smarthealthit.org",
-      "path": "/Patient/{0}/$everything?_count=10000",
+      "path": "/Patient/{0}/$everything",
       "refPath": "/{0}"
    },
 
    "Synthea": {
       "base": "http://165.227.51.4:9007",
-      "path": "/baseDstu3/Patient/{0}/$everything?_count=10000",
+      "path": "/baseDstu3/Patient/{0}/$everything",
       "refPath": "/baseDstu3/{0}",
       "useOrg": "true"
    },
@@ -25,7 +25,7 @@
    "Forest Hills Hospital": {
       "group": "r3.smarthealthit.org-1",
       "base": "https://r3.smarthealthit.org",
-      "path": "/Patient/{0}/$everything?_count=10000",
+      "path": "/Patient/{0}/$everything",
       "refPath": "/{0}",
       "randLow": "0.0",
       "randHigh": "0.6"
@@ -33,7 +33,7 @@
    "Blue Valley Health Center": {
       "group": "r3.smarthealthit.org-1",
       "base": "https://r3.smarthealthit.org",
-      "path": "/Patient/{0}/$everything?_count=10000",
+      "path": "/Patient/{0}/$everything",
       "refPath": "/{0}",
       "randLow": "0.3",
       "randHigh": "1.0"
@@ -42,7 +42,7 @@
    "Alberdene Health Clinic": {
       "group": "r3.smarthealthit.org-2",
       "base": "https://r3.smarthealthit.org",
-      "path": "/Patient/{0}/$everything?_count=10000",
+      "path": "/Patient/{0}/$everything",
       "refPath": "/{0}",
       "randLow": "0.0",
       "randHigh": "0.6"
@@ -50,7 +50,7 @@
    "Athenville Public Hospital": {
       "group": "r3.smarthealthit.org-2",
       "base": "https://r3.smarthealthit.org",
-      "path": "/Patient/{0}/$everything?_count=10000",
+      "path": "/Patient/{0}/$everything",
       "refPath": "/{0}",
       "randLow": "0.3",
       "randHigh": "0.6"
@@ -58,7 +58,7 @@
    "Broxton Hospital": {
       "group": "r3.smarthealthit.org-2",
       "base": "https://r3.smarthealthit.org",
-      "path": "/Patient/{0}/$everything?_count=10000",
+      "path": "/Patient/{0}/$everything",
       "refPath": "/{0}",
       "randLow": "0.4",
       "randHigh": "0.7"
@@ -66,7 +66,7 @@
    "Fetters Hill Community Clinic": {
       "group": "r3.smarthealthit.org-2",
       "base": "https://r3.smarthealthit.org",
-      "path": "/Patient/{0}/$everything?_count=10000",
+      "path": "/Patient/{0}/$everything",
       "refPath": "/{0}",
       "randLow": "0.5",
       "randHigh": "0.8"
@@ -74,7 +74,7 @@
    "Gardendale Medical Center": {
       "group": "r3.smarthealthit.org-2",
       "base": "https://r3.smarthealthit.org",
-      "path": "/Patient/{0}/$everything?_count=10000",
+      "path": "/Patient/{0}/$everything",
       "refPath": "/{0}",
       "randLow": "0.5",
       "randHigh": "1.0"

@@ -2,13 +2,17 @@
 
 // S4S Discovery Data Server Participants web service
 // File: participants.js
-const version = '20190410';
+const version = '20191016';
 
 // Required modules
 const restifyClients = require('restify-clients');
 const EventEmitter = require('events').EventEmitter;
 const util = require('./utility');
 const seedrandom = require('seedrandom');
+const LocalStorage = require('node-localstorage').LocalStorage;
+
+// Setup local storage
+const localStorage = new LocalStorage('./localStorage');
 
 // Configuration (Kluge: config is read by all modules)
 const config = require('./config');
@@ -50,12 +54,29 @@ module.exports.participantData = function (req, res, next) {
    } else {
       getAllParticipantData(req.params.id, function (participantData) {
 	 // All data (and errors) have been collected -- return to requestor
-	 util.sendJson(req, res, participantData);
+	 util.sendJson(req, res, addAnnotations(req.params.id, participantData));
       });
       return next();
    }
 };
 
+// The participant create/update annotation call (POST /participants/:id/:provider/:resourceId)
+module.exports.participantAnnotation = function (req, res, next) {
+   if (req == undefined) {
+      // Return documentation
+      return {desc:   'Create/update annotation for participant :id, provider :provider, resourceId :resourceId',
+	      params: [{name: 'id', desc: 'the participant id'},
+		       {name: 'provider', desc: 'the provider name'},
+		       {name: 'resourceId', desc: 'the resource id'}],
+	      post:   [{name: 'annotation', desc: 'the annotation text'}],
+	      return: '"OK" indicating successful creation/update of the annotation'};
+   } else {
+      annotate(req.params.id, req.params.provider, req.params.resourceId, req.body.annotation, function () {
+	 util.sendText(req, res, 200, 'OK');
+      });
+      return next();
+   }
+};
 
 //---------------------------------------------------------------------------------
 
@@ -71,7 +92,7 @@ function getAllParticipantData (id, callback) {
 
    if (groupsForParticipant.length > 0) {
       // Organize resources by group members
-//      process.stdout.write('By group: ' + groupsForParticipant.length + '\n');
+      process.stdout.write('ID: ' + id + ' Groups: ' + groupsForParticipant.length + '\n');
       getAllParticipantDataForGroups(participantData, groupsForParticipant, id, callback);
    }
 
@@ -84,13 +105,13 @@ function getAllParticipantData (id, callback) {
 
    if (providersForParticipantUseOrg.length > 0) {
       // Organize resources by providing organization
-//      process.stdout.write('By org: ' + providersForParticipantUseOrg.length + '\n');
+      process.stdout.write('ID: ' + id + ' Orgs: ' + providersForParticipantUseOrg.length + '\n');
       getAllParticipantDataNoGroups(participantData, providersForParticipantUseOrg, id, organizeResources, callback);
    }
 
    if (providersForParticipantNoOrg.length > 0) {
       // Organize resources using "old" (no groups/org) format
-//      process.stdout.write('Old: ' + providersForParticipantNoOrg.length + '\n');
+      process.stdout.write('ID: ' + id + ' Non-group/orgs: ' + providersForParticipantNoOrg.length + '\n');
       getAllParticipantDataNoGroups(participantData, providersForParticipantNoOrg, id,
 				    (participantData, defaultName, participantId, obj) => participantData[defaultName] = obj, callback);
    }
@@ -149,7 +170,11 @@ function getAllParticipantDataForGroups (participantData, groupsForParticipant, 
       util.setNotReady(groupReqStatus, groupName)
 
       // Make the request to the group
-      groupClient.get(groupUrlPath, function (err, req, res, obj) {
+//      groupClient.get(groupUrlPath, function (err, req, res, obj) {
+      let urlPath = groupUrlPath + (config.requestCount ? `?_count=${config.requestCount}` : '');
+      let result;
+      let resourceHash = {};
+      getAllDataFromProvider(groupClient, groupUrlBase, groupUrlPath+`?_count=${config.requestCount}`, result, resourceHash, function (err, req, res, obj) {
 
 //	    const nodeUtil = require('util');
 //	    const fs = require('fs');
@@ -221,6 +246,7 @@ function getAllParticipantDataNoGroups (participantData, providersForParticipant
       try {
          providerName = thisProvider.providerName;
          providerUrlBase = providers[providerName].base;
+	 process.stdout.write('base: ' + providers[providerName].base + '\n');
          providerUrlPath = providers[providerName].path.format(thisProvider.patientId);
       } catch (e) {
 	 // Invalid/malformed provider
@@ -250,7 +276,10 @@ function getAllParticipantDataNoGroups (participantData, providersForParticipant
       util.setNotReady(providerReqStatus, providerName)
 
       // Make the request to the provider
-      providerClient.get(providerUrlPath, function (err, req, res, obj) {
+      let urlPath = providerUrlPath + (config.requestCount ? `?_count=${config.requestCount}` : '');
+      let result;
+      let resourceHash = {};
+      getAllDataFromProvider(providerClient, providerUrlBase, urlPath, result, resourceHash, function (err, req, res, obj) {
 
 //	 const nodeUtil = require('util');
 //	 const fs = require('fs');
@@ -267,7 +296,7 @@ function getAllParticipantDataNoGroups (participantData, providersForParticipant
 
 	 // Save the response
 	 if (err) {
-	    participantData[providerNameFromRequest] = { error: err, providerName: providerNameFromRequest };   
+	    participantData[providerNameFromRequest] = { error: err, providerName: providerNameFromRequest, response: obj };   
 	 } else {	 
 	    storeResourcesFn(participantData, providerNameFromRequest, id, obj);
 	 }
@@ -278,6 +307,58 @@ function getAllParticipantDataNoGroups (participantData, providersForParticipant
 	    callbackFn(participantData);
 	 }
       });
+   }
+}
+
+function extractUrlPath(base, url) {
+   // Return everything after 'base'. Add an initial '/' if missing
+   let path = url.substring(base.length);
+   return path.charAt(0) === '/' ? path : '/' + path;
+}
+
+// Collect all resources from this provider (may require multiple fetches)
+function getAllDataFromProvider(providerClient, providerUrlBase, providerUrlPath, result, resourceHash, callbackFn) {
+   providerClient.get(providerUrlPath, function (err, req, res, bundle) {
+      if (err) {
+	 callbackFn(err, req, res, bundle);
+      } else {
+	 process.stdout.write(providerUrlPath+'\n');
+	 if (!result) {
+	    // Set initial result
+	    result = Object.assign({}, bundle);
+	    result.entry = [];
+	    result.link = result.link.filter(link => link.relation !== 'next');	// Dump the 'next' link
+	    result.total = 0;
+	 }
+	 // Add to prior results
+	 addNewResources(resourceHash, result, bundle)
+	  
+	 // More data to fetch?
+	 let nextLink = bundle.link.find(link => link.relation === 'next');
+//	 process.stdout.write('nextLink: ' + JSON.stringify(nextLink, null, 3) + '\n');
+	 if (!nextLink) {
+	    callbackFn(err, req, res, result);
+	 } else {
+//	    process.stdout.write('path: ' + extractUrlPath(providerUrlBase, nextLink.url) + '\n');
+	    getAllDataFromProvider(providerClient, providerUrlBase, extractUrlPath(providerUrlBase, nextLink.url), result, resourceHash, callbackFn);
+	 }
+      }
+   });
+}
+
+// Add resources not already in the results
+function addNewResources(resourceHash, result, bundle) {
+   if (bundle.entry) {
+      for (let res of bundle.entry) {
+	  if (!resourceHash.hasOwnProperty(res.resource.id)) {
+//	     process.stdout.write(' Added: ' + res.resource.id + '\n');
+	     result.entry.push(res);
+	     result.total++;
+	     resourceHash[res.resource.id] = true;
+	  } else {
+//	     process.stdout.write(' ***DUP: ' + res.resource.id + '\n');
+	  }
+      }
    }
 }
 
@@ -320,6 +401,7 @@ function organizeResources(participantData, defaultName, participantId, obj) {
       if (!results[orgName]) {
 	 results[orgName] = {
 	    resourceType: 'Bundle',
+	    total: 1,
 	    entry: [ patient ]		// first resource for this individual for each provider/organization
 	 };
       }
@@ -335,17 +417,21 @@ function organizeResources(participantData, defaultName, participantId, obj) {
 
 	 case 'Encounter':
 	    results[orgs[elt.resource.serviceProvider.reference]].entry.push(elt);
+	    results[orgs[elt.resource.serviceProvider.reference]].total++;
 	    break;
 
 	 case 'Claim':
 	    results[orgs[elt.resource.organization.reference]].entry.push(elt);
+	    results[orgs[elt.resource.organization.reference]].total++;
 	    break;
 
 	 case 'ExplanationOfBenefit':
 	    if (elt.resource.organization) {
 	       results[orgs[elt.resource.organization.identifier.value]].entry.push(elt);
+	       results[orgs[elt.resource.organization.identifier.value]].total++;
 	    } else if (elt.resource.claim) {
 	       results[orgs[claims[elt.resource.claim.reference]]].entry.push(elt);
+	       results[orgs[claims[elt.resource.claim.reference]]].total++;
 	    } else {
 	       process.stdout.write(`NO REFERENCE (${participantId}): ExplanationOfBenefit ID: ${elt.resource.id}\n`);
 	    }
@@ -354,8 +440,10 @@ function organizeResources(participantData, defaultName, participantId, obj) {
 	 default:
 	    if (elt.resource.encounter) {
 	       results[orgs[encs[elt.resource.encounter.reference]]].entry.push(elt);
+	       results[orgs[encs[elt.resource.encounter.reference]]].total++;
 	    } else if (elt.resource.context) {
 	       results[orgs[encs[elt.resource.context.reference]]].entry.push(elt);
+	       results[orgs[encs[elt.resource.context.reference]]].total++;
 	    } else {
 	       process.stdout.write(`NO REFERENCE (${participantId}): ${elt.resource.resourceType} ID: ${elt.resource.id}\n`);
 	    }
@@ -365,4 +453,75 @@ function organizeResources(participantData, defaultName, participantId, obj) {
 
    // Merge results into collected data
    Object.assign(participantData, results);
+}
+
+function stripTags(text) {
+   return text ? text.replace(/<[^>]*>/g, '') : '';
+}
+
+//
+// Create/update the annotation for id, provider, resourceId
+//
+function annotate(id, provider, resourceId, newText, callback) {
+   let key = id;
+   let subKey = `${provider}_${resourceId}`;
+   let annotationsForKey = localStorage.getItem(key);
+   let annotationsObj;
+   let timestamp = new Date();
+   let newTextClean = stripTags(newText);	// remove html tags
+
+   if (annotationsForKey) {
+      // There are existing annotations for this id
+      annotationsObj = JSON.parse(annotationsForKey);
+      let annotationForSubKey = annotationsObj[subKey];
+      let newAnnotationForSubKey;
+
+      if (annotationForSubKey) {
+	 // Update previous annotation for this subKey
+	 newAnnotationForSubKey = { created: annotationForSubKey.created,
+				    annotationHistory: annotationForSubKey.annotationHistory.concat({ updated: timestamp, annotationText: newTextClean }) };
+
+      } else {
+	 // Create new annotation for this subKey
+	 newAnnotationForSubKey = { created: timestamp, annotationHistory: [{ updated: timestamp, annotationText: newTextClean }] };
+      }
+
+      // Update subKey prop of object
+      annotationsObj[subKey] = newAnnotationForSubKey;
+       
+   } else {
+      // Initialize annotations for this id
+      annotationsObj = {};
+      annotationsObj[subKey] = { created: timestamp, annotationHistory: [{ updated: timestamp, annotationText: newTextClean }] };
+   }
+
+//   console.log('key: ' + key);
+//   console.log('new value: ' + JSON.stringify(annotationsObj, null, 3));
+
+   localStorage.setItem(key, JSON.stringify(annotationsObj));
+   callback();
+}
+
+//
+// Add annotations to retrieved data for id
+//
+function addAnnotations(id, data) {
+   let annotationsForId = localStorage.getItem(id);
+   let annotationsObj = annotationsForId ? JSON.parse(annotationsForId) : {};
+
+//   console.log(JSON.stringify(annotationsObj, null, 3));
+
+   for (let provider in data) {
+      for (let elt of data[provider].entry) {
+	 let subKey = `${provider}_${elt.resource.id}`;
+	 let annotation = annotationsObj[subKey];
+	 if (annotation) {
+//	    console.log(`   ${provider} - ${elt.resource.id}:`);
+//	    console.log(`   ${JSON.stringify(annotation, null, 3)}`);
+	    elt.resource['discoveryAnnotation'] = annotation;
+	 }
+      }
+   }
+
+   return data;
 }

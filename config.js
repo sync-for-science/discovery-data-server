@@ -2,7 +2,7 @@
 
 // S4S Discovery Data Server
 // File: config.js
-const version = '20181214';
+const version = '20190507';
 
 // Required modules
 const argv = require('optimist').argv;
@@ -22,6 +22,7 @@ config.providerConnectTimeout = 250;
 config.providerRequestTimeout = 1000;
 config.retries = 1;
 config.minRetryTimeout = 250;
+config.requestCount=50;
 
 // ----- Per deployment -----
 if (argv.dev || argv.development) {

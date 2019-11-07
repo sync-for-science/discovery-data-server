@@ -4,8 +4,8 @@
       "lists": ["1000 series"],
       "gender": "F",
       "dob": "2007-03-20",
-      "dateRange": "2007-2011",
-      "valueCount": 9,
+      "dateRange": "2000-2011",
+      "valueCount": 25,
       "providers": [
          {
 	    "providerName": "DSTU2 Provider",
@@ -22,8 +22,8 @@
       "lists": ["1000 series"],
       "gender": "M",
       "dob": "2003-10-02",
-      "dateRange": "2004-2005",
-      "valueCount": 9,
+      "dateRange": "2000-2007",
+      "valueCount": 57,
       "providers": [
          {
    	    "providerName": "DSTU2 Provider",
@@ -40,8 +40,8 @@
       "lists": ["1000 series"],
       "gender": "M",
       "dob": "1953-10-27",
-      "dateRange": "2005-2005",
-      "valueCount": 9,
+      "dateRange": "1953-2009",
+      "valueCount": 28,
       "providers": [
    	 {
    	    "providerName": "DSTU2 Provider",
@@ -54,8 +54,8 @@
       "lists": ["1000 series"],
       "gender": "M",
       "dob": "2004-10-15",
-      "dateRange": "2005-2005",
-      "valueCount": 10,
+      "dateRange": "2000-2009",
+      "valueCount": 87,
       "providers": [
    	 {
    	    "providerName": "DSTU2 Provider",
@@ -68,8 +68,8 @@
       "lists": ["1000 series"],
       "gender": "M",
       "dob": "1954-08-21",
-      "dateRange": "2000-2009",
-      "valueCount": 10,
+      "dateRange": "1954-2009",
+      "valueCount": 99,
       "providers": [
    	 {
    	    "providerName": "DSTU2 Provider",
@@ -82,8 +82,8 @@
       "lists": ["1000 series"],
       "gender": "F",
       "dob": "1949-11-04",
-      "dateRange": "2004-2006",
-      "valueCount": 9,
+      "dateRange": "2003-2006",
+      "valueCount": 79,
       "providers": [
    	 {
    	    "providerName": "DSTU2 Provider",
@@ -96,8 +96,8 @@
       "lists": ["1000 series"],
       "gender": "M",
       "dob": "1995-02-22",
-      "dateRange": "2008-2009",
-      "valueCount": 17,
+      "dateRange": "1995-2009",
+      "valueCount": 210,
       "providers": [
    	 {
    	    "providerName": "DSTU2 Provider",
@@ -110,8 +110,8 @@
       "lists": ["1000 series"],
       "gender": "M",
       "dob": "1965-06-22",
-      "dateRange": "1997-1997",
-      "valueCount": 8,
+      "dateRange": "1997-2009",
+      "valueCount": 251,
       "providers": [
    	 {
    	    "providerName": "DSTU2 Provider",
@@ -124,8 +124,8 @@
       "lists": ["1000 series"],
       "gender": "M",
       "dob": "1945-05-01",
-      "dateRange": "2002-2003",
-      "valueCount": 16,
+      "dateRange": "2000-2009",
+      "valueCount": 324,
       "providers": [
    	 {
    	    "providerName": "DSTU2 Provider",
@@ -138,8 +138,8 @@
       "lists": ["1000 series"],
       "gender": "M",
       "dob": "1925-12-23",
-      "dateRange": "1997-1997",
-      "valueCount": 8,
+      "dateRange": "1997-2009",
+      "valueCount": 405,
       "providers": [
    	 {
    	    "providerName": "DSTU2 Provider",
@@ -154,7 +154,7 @@
       "gender": "F",
       "dob": "2016-08-30",
       "dateRange": "2016-2017",
-      "valueCount": 31,
+      "valueCount": 74,
       "providers": [
          {
 	    "providerName": "Forest Hills Hospital",
@@ -171,8 +171,8 @@
       "lists": ["2000 series"],
       "gender": "F",
       "dob": "1981-01-01",
-      "dateRange": "1982-2017",
-      "valueCount": 50,
+      "dateRange": "1982-2015",
+      "valueCount": 64,
       "providers": [
          {
 	    "providerName": "Blue Valley Health Center",
@@ -185,8 +185,8 @@
       "lists": ["2000 series"],
       "gender": "F",
       "dob": "1952-04-23",
-      "dateRange": "2015-2015",
-      "valueCount": 1,
+      "dateRange": "2015-2016",
+      "valueCount": 11,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -200,7 +200,7 @@
       "gender": "M",
       "dob": "2016-01-13",
       "dateRange": "2016-2017",
-      "valueCount": 48,
+      "valueCount": 84,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -214,7 +214,7 @@
       "gender": "F",
       "dob": "1926-02-09",
       "dateRange": "1937-2002",
-      "valueCount": 10,
+      "valueCount": 24,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -227,8 +227,8 @@
       "lists": ["2000 series"],
       "gender": "M",
       "dob": "1957-03-07",
-      "dateRange": "1966-2017",
-      "valueCount": 64,
+      "dateRange": "1966-2014",
+      "valueCount": 101,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -242,7 +242,7 @@
       "gender": "F",
       "dob": "2003-06-13",
       "dateRange": "2007-2017",
-      "valueCount": 72,
+      "valueCount": 118,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -256,7 +256,7 @@
       "gender": "M",
       "dob": "1989-08-19",
       "dateRange": "1993-2015",
-      "valueCount": 48,
+      "valueCount": 94,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -269,8 +269,8 @@
       "lists": ["2000 series"],
       "gender": "M",
       "dob": "1918-11-14",
-      "dateRange": "1969-1990",
-      "valueCount": 17,
+      "dateRange": "1969-1991",
+      "valueCount": 29,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -284,7 +284,7 @@
       "gender": "M",
       "dob": "1975-12-17",
       "dateRange": "2008-2016",
-      "valueCount": 45,
+      "valueCount": 68,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -298,7 +298,7 @@
       "gender": "M",
       "dob": "1999-04-15",
       "dateRange": "2007-2017",
-      "valueCount": 73,
+      "valueCount": 117,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -311,8 +311,8 @@
       "lists": ["2000 series"],
       "gender": "F",
       "dob": "1944-10-05",
-      "dateRange": "1963-2016",
-      "valueCount": 94,
+      "dateRange": "1963-2015",
+      "valueCount": 129,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -325,8 +325,8 @@
       "lists": ["2000 series"],
       "gender": "F",
       "dob": "1936-03-01",
-      "dateRange": "1950-2016",
-      "valueCount": 83,
+      "dateRange": "1950-2015",
+      "valueCount": 130,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -339,8 +339,8 @@
       "lists": ["2000 series"],
       "gender": "F",
       "dob": "1987-06-25",
-      "dateRange": "1996-2017",
-      "valueCount": 64,
+      "dateRange": "1996-2016",
+      "valueCount": 133,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -354,7 +354,7 @@
       "gender": "F",
       "dob": "1935-06-26",
       "dateRange": "1946-2008",
-      "valueCount": 45,
+      "valueCount": 73,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -368,7 +368,7 @@
       "gender": "M",
       "dob": "1978-10-19",
       "dateRange": "1979-2016",
-      "valueCount": 64,
+      "valueCount": 92,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -382,7 +382,7 @@
       "gender": "M",
       "dob": "1969-01-22",
       "dateRange": "1970-2016",
-      "valueCount": 32,
+      "valueCount": 49,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -396,7 +396,7 @@
       "gender": "M",
       "dob": "1961-12-17",
       "dateRange": "1984-2016",
-      "valueCount": 117,
+      "valueCount": 180,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -410,7 +410,7 @@
       "gender": "M",
       "dob": "1999-08-10",
       "dateRange": "2007-2016",
-      "valueCount": 59,
+      "valueCount": 89,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -424,7 +424,7 @@
       "gender": "F",
       "dob": "1963-01-15",
       "dateRange": "1967-2016",
-      "valueCount": 63,
+      "valueCount": 101,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -438,7 +438,7 @@
       "gender": "F",
       "dob": "1978-05-21",
       "dateRange": "1979-2015",
-      "valueCount": 72,
+      "valueCount": 233,
       "providers": [
          {
 	    "providerName": "Alberdene Health Clinic",
@@ -467,8 +467,8 @@
       "lists": ["2000 series"],
       "gender": "F",
       "dob": "1932-12-16",
-      "dateRange": "1951-1951",
-      "valueCount": 2,
+      "dateRange": "1951-2001",
+      "valueCount": 5,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -482,7 +482,7 @@
       "gender": "M",
       "dob": "2013-03-06",
       "dateRange": "2013-2017",
-      "valueCount": 76,
+      "valueCount": 127,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -496,7 +496,7 @@
       "gender": "M",
       "dob": "1963-12-25",
       "dateRange": "1964-2016",
-      "valueCount": 88,
+      "valueCount": 137,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -509,8 +509,8 @@
       "lists": ["2000 series"],
       "gender": "M",
       "dob": "1976-12-05",
-      "dateRange": "2015-2015",
-      "valueCount": 1,
+      "dateRange": "2015-2019",
+      "valueCount": 12,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -524,7 +524,7 @@
       "gender": "M",
       "dob": "2002-01-23",
       "dateRange": "2007-2017",
-      "valueCount": 71,
+      "valueCount": 118,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -538,7 +538,7 @@
       "gender": "F",
       "dob": "1981-07-22",
       "dateRange": "1985-2017",
-      "valueCount": 51,
+      "valueCount": 82,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -552,7 +552,7 @@
       "gender": "F",
       "dob": "1990-06-26",
       "dateRange": "1991-2017",
-      "valueCount": 78,
+      "valueCount": 145,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -566,7 +566,7 @@
       "gender": "M",
       "dob": "1982-03-28",
       "dateRange": "1985-2015",
-      "valueCount": 163,
+      "valueCount": 210,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -580,7 +580,7 @@
       "gender": "M",
       "dob": "1965-05-31",
       "dateRange": "1991-2017",
-      "valueCount": 104,
+      "valueCount": 137,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -594,7 +594,7 @@
       "gender": "F",
       "dob": "1925-09-19",
       "dateRange": "1939-1954",
-      "valueCount": 5,
+      "valueCount": 12,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -608,7 +608,7 @@
       "gender": "M",
       "dob": "2002-09-16",
       "dateRange": "2004-2017",
-      "valueCount": 100,
+      "valueCount": 170,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -621,8 +621,8 @@
       "lists": ["2000 series"],
       "gender": "F",
       "dob": "1928-03-02",
-      "dateRange": "1946-1967",
-      "valueCount": 7,
+      "dateRange": "1946-1983",
+      "valueCount": 21,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -636,7 +636,7 @@
       "gender": "F",
       "dob": "1966-09-19",
       "dateRange": "1985-2016",
-      "valueCount": 70,
+      "valueCount": 112,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -650,7 +650,7 @@
       "gender": "M",
       "dob": "1979-05-11",
       "dateRange": "1998-2017",
-      "valueCount": 31,
+      "valueCount": 48,
       "providers": [
          {
 	    "providerName": "r3.smarthealthit.org",
@@ -661,11 +661,12 @@
 
    "3001": {
       "name": "Ms. Adela Acuña",
-      "lists": ["3000 series"],
+      "lists": ["3000 series", "Bio-IT"],
       "gender": "F",
       "dob": "2000-10-25",
-      "dateRange": "2009-2011",
-      "valueCount": 54,
+      "dateRange": "2009-2019",
+      "valueCount": 198,
+      "providerCount": 2,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -678,8 +679,9 @@
       "lists": ["3000 series"],
       "gender": "F",
       "dob": "1973-12-30",
-      "dateRange": "1974-2013",
-      "valueCount": 52,
+      "dateRange": "1974-2017",
+      "valueCount": 96,
+      "providerCount": 1,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -692,8 +694,9 @@
       "lists": ["3000 series"],
       "gender": "F",
       "dob": "1985-06-21",
-      "dateRange": "2003-2013",
-      "valueCount": 52,
+      "dateRange": "2003-2018",
+      "valueCount": 229,
+      "providerCount": 2,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -706,8 +709,9 @@
       "lists": ["3000 series"],
       "gender": "F",
       "dob": "1958-10-06",
-      "dateRange": "1976-2010",
-      "valueCount": 52,
+      "dateRange": "1976-2018",
+      "valueCount": 441,
+      "providerCount": 2,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -720,8 +724,9 @@
       "lists": ["3000 series"],
       "gender": "F",
       "dob": "1994-02-01",
-      "dateRange": "2009-2011",
-      "valueCount": 52,
+      "dateRange": "2009-2017",
+      "valueCount": 312,
+      "providerCount": 2,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -734,8 +739,9 @@
       "lists": ["3000 series"],
       "gender": "F",
       "dob": "2001-11-14",
-      "dateRange": "2009-2011",
-      "valueCount": 54,
+      "dateRange": "2009-2019",
+      "valueCount": 162,
+      "providerCount": 2,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -748,8 +754,9 @@
       "lists": ["3000 series"],
       "gender": "M",
       "dob": "1951-06-21",
-      "dateRange": "1956-2001",
-      "valueCount": 57,
+      "dateRange": "1956-2019",
+      "valueCount": 1725,
+      "providerCount": 2,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -762,8 +769,9 @@
       "lists": ["3000 series"],
       "gender": "F",
       "dob": "1975-06-17",
-      "dateRange": "1976-2009",
-      "valueCount": 51,
+      "dateRange": "1976-2018",
+      "valueCount": 414,
+      "providerCount": 2,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -776,8 +784,9 @@
       "lists": ["3000 series"],
       "gender": "M",
       "dob": "1962-10-23",
-      "dateRange": "2002-2012",
-      "valueCount": 52,
+      "dateRange": "2002-2018",
+      "valueCount": 142,
+      "providerCount": 2,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -790,8 +799,9 @@
       "lists": ["3000 series"],
       "gender": "M",
       "dob": "1949-12-08",
-      "dateRange": "1984-2009",
-      "valueCount": 54,
+      "dateRange": "1984-2018",
+      "valueCount": 344,
+      "providerCount": 3,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -804,8 +814,9 @@
       "lists": ["3000 series"],
       "gender": "M",
       "dob": "2010-04-26",
-      "dateRange": "2010-2010",
-      "valueCount": 52,
+      "dateRange": "2010-2018",
+      "valueCount": 243,
+      "providerCount": 2,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -818,8 +829,9 @@
       "lists": ["3000 series"],
       "gender": "M",
       "dob": "1954-09-09",
-      "dateRange": "1972-2009",
-      "valueCount": 54,
+      "dateRange": "1972-2018",
+      "valueCount": 231,
+      "providerCount": 2,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -832,8 +844,9 @@
       "lists": ["3000 series"],
       "gender": "M",
       "dob": "1974-08-05",
-      "dateRange": "1989-2013",
-      "valueCount": 54,
+      "dateRange": "1989-2017",
+      "valueCount": 142,
+      "providerCount": 2,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -846,8 +859,9 @@
       "lists": ["3000 series"],
       "gender": "M",
       "dob": "1997-06-24",
-      "dateRange": "1998-2010",
-      "valueCount": 54,
+      "dateRange": "1998-2018",
+      "valueCount": 481,
+      "providerCount": 3,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -860,8 +874,9 @@
       "lists": ["3000 series"],
       "gender": "M",
       "dob": "1953-12-13",
-      "dateRange": "1982-2004",
-      "valueCount": 52,
+      "dateRange": "1982-2019",
+      "valueCount": 522,
+      "providerCount": 2,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -874,8 +889,9 @@
       "lists": ["3000 series"],
       "gender": "F",
       "dob": "2011-07-07",
-      "dateRange": "2011-2011",
-      "valueCount": 52,
+      "dateRange": "2011-2018",
+      "valueCount": 252,
+      "providerCount": 3,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -885,11 +901,12 @@
    },
    "3017": {
       "name": "Mr. Kendall Mayer",
-      "lists": ["3000 series"],
+      "lists": ["3000 series", "Bio-IT"],
       "gender": "M",
       "dob": "1989-08-23",
-      "dateRange": "2001-2014",
-      "valueCount": 54,
+      "dateRange": "2001-2018",
+      "valueCount": 86,
+      "providerCount": 2,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -902,8 +919,9 @@
       "lists": ["3000 series"],
       "gender": "M",
       "dob": "1949-12-08",
-      "dateRange": "1981-1998",
-      "valueCount": 52,
+      "dateRange": "1981-2007",
+      "valueCount": 418,
+      "providerCount": 2,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -916,8 +934,9 @@
       "lists": ["3000 series"],
       "gender": "F",
       "dob": "2013-04-14",
-      "dateRange": "2013-2013",
-      "valueCount": 52,
+      "dateRange": "2013-2018",
+      "valueCount": 225,
+      "providerCount": 1,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -930,8 +949,9 @@
       "lists": ["3000 series"],
       "gender": "F",
       "dob": "1950-05-16",
-      "dateRange": "1976-2011",
-      "valueCount": 52,
+      "dateRange": "1976-2018",
+      "valueCount": 170,
+      "providerCount": 1,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -944,8 +964,9 @@
       "lists": ["3000 series"],
       "gender": "F",
       "dob": "1955-06-30",
-      "dateRange": "1960-2011",
-      "valueCount": 52,
+      "dateRange": "1960-2018",
+      "valueCount": 419,
+      "providerCount": 1,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -958,8 +979,9 @@
       "lists": ["3000 series"],
       "gender": "F",
       "dob": "1951-12-14",
-      "dateRange": "1970-2010",
-      "valueCount": 57,
+      "dateRange": "1970-2018",
+      "valueCount": 298,
+      "providerCount": 1,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -972,8 +994,9 @@
       "lists": ["3000 series"],
       "gender": "F",
       "dob": "1998-04-13",
-      "dateRange": "1998-2009",
-      "valueCount": 52,
+      "dateRange": "1998-2017",
+      "valueCount": 466,
+      "providerCount": 2,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -986,8 +1009,9 @@
       "lists": ["3000 series"],
       "gender": "F",
       "dob": "1916-05-28",
-      "dateRange": "1944-2009",
-      "valueCount": 52,
+      "dateRange": "1944-2018",
+      "valueCount": 369,
+      "providerCount": 2,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -1000,8 +1024,9 @@
       "lists": ["3000 series"],
       "gender": "F",
       "dob": "1989-06-18",
-      "dateRange": "2008-2009",
-      "valueCount": 52,
+      "dateRange": "2008-2017",
+      "valueCount": 218,
+      "providerCount": 2,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -1014,8 +1039,9 @@
       "lists": ["3000 series"],
       "gender": "M",
       "dob": "1951-06-21",
-      "dateRange": "1969-1995",
-      "valueCount": 59,
+      "dateRange": "1969-2003",
+      "valueCount": 267,
+      "providerCount": 2,
       "providers": [
    	 {
 	    "providerName": "Synthea",
@@ -1028,8 +1054,9 @@
       "lists": ["3000 series"],
       "gender": "F",
       "dob": "2006-04-05",
-      "dateRange": "2009-2011",
-      "valueCount": 52,
+      "dateRange": "2009-2018",
+      "valueCount": 200,
+      "providerCount": 1,
       "providers": [
    	 {
 	    "providerName": "Synthea",

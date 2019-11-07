@@ -2,7 +2,7 @@
 
 // S4S Discovery Data Services
 // File: DiscoveryData.js
-const version = '20180802';
+const version = '20191008';
 
 // Required modules
 const restify = require('restify');
@@ -25,7 +25,7 @@ const logInst = new Logger({
 });
 
 // Setup restify
-const server = restify.createServer({name: 'S4S Discovery Data Server', version: '1.1.0', log: logInst});
+const server = restify.createServer({name: 'S4S Discovery Data Server', version: '1.2.0', log: logInst});
 server.use(restify.plugins.bodyParser());
 
 // CORS support
@@ -99,6 +99,7 @@ participants.on('ready', function () {
 // Allowed 'participants' methods and routes
 server.get('/participants', participants.participants);
 server.get('/participants/:id', participants.participantData);
+server.post('/participants/:id/:provider/:resourceId', participants.participantAnnotation);
 
 // ---------- Configure the 'reference' service --------------------
 var reference = require ('./reference');
