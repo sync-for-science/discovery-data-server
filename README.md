@@ -29,8 +29,8 @@ Run the **install.sh** script (you must have sudo privileges):
 
 The install script will request the following:
 
-- The DNS/IP address of the FHIR Demo Data Providers (defaults to **localhost** if no input given)
-- The DNS/IP address & port of the Discovery Application Server (address:port)
+- The DNS/IP address of the FHIR Demo Data Providers
+- The DNS/IP address & (optional) port of the Discovery Application Server (address:port)
 
 ## Checking Status
 

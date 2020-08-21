@@ -4,11 +4,8 @@
 
 # Get component locations
 THIS_ADDR=`dig @resolver1.opendns.com ANY myip.opendns.com +short`
-echo -n 'DNS/IP address of the Discovery FHIR Demo Data Providers [localhost]: '
+echo -n 'DNS/IP address of the Discovery FHIR Demo Data Providers: '
 read DEMODATA_ADDR
-if [ -z $DEMODATA_ADDR ]; then
-   DEMODATA_ADDR=localhost
-fi
 echo -n 'DNS/IP address & (optional) port of the Discovery App Server (address:port): '
 read APP_ADDR
 if ! [[ $APP_ADDR =~ .+:.+ ]]; then
