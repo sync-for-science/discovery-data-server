@@ -12,9 +12,19 @@ All three packages can be installed on the same Linux instance, but the DNS/IP a
 
 ## Installation of the Discovery Data Server
 
+Verify the target system is current:
+
+    sudo apt update
+    sudo apt upgrade
+
+Clone this repository:
+
+    git clone https://github.com/sync-for-science/discovery-data-server
+    cd discovery-data-server
+
 Run the **install.sh** script (you must have sudo privileges):
 
-`./install.sh`
+    ./install.sh
 
 The install script will request the following:
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 # Discovery Data Server installer
-# 20200817/SK
+# 20200821/SK
 
 # Get component locations
 THIS_ADDR=`dig @resolver1.opendns.com ANY myip.opendns.com +short`
@@ -16,8 +16,8 @@ if ! [[ $APP_ADDR =~ .+:.+ ]]; then
 fi
 
 # Install prerequisites
-sudo apt install nodejs
-sudo apt install npm
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt-get install -y nodejs
 
 # Install node modules
 sudo npm install
