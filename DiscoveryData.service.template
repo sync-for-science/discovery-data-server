@@ -1,0 +1,13 @@
+[Unit]
+Description=S4S Discovery Data Services
+StartLimitInterval=0
+
+[Service]
+Type=simple
+WorkingDirectory=WORKINGDIR
+ExecStart=/usr/bin/node DiscoveryData
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

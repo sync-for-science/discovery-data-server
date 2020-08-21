@@ -1,14 +1,16 @@
 {
    "DSTU2 Provider": {
-      "base": "http://165.227.51.4:9002",
-      "path": "/baseDstu2/Patient/{0}/$everything",
-      "refPath": "/baseDstu2/{0}"
+      "base": "http://DEMODATA:9002",
+      "path": "/{0}.json",
+      "refPath": "/{0}.json"
    },
+
    "DSTU3 Provider": {
-      "base": "http://165.227.51.4:9007",
-      "path": "/baseDstu3/Patient/{0}/$everything",
-      "refPath": "/baseDstu3/{0}"
+      "base": "http://DEMODATA:9007",
+      "path": "/{0}.json",
+      "refPath": "/{0}.json"
    },
+
    "r3.smarthealthit.org": {
       "base": "https://r3.smarthealthit.org",
       "path": "/Patient/{0}/$everything",
@@ -16,9 +18,9 @@
    },
 
    "Synthea": {
-      "base": "http://165.227.51.4:9007",
-      "path": "/baseDstu3/Patient/{0}/$everything",
-      "refPath": "/baseDstu3/{0}",
+      "base": "http://DEMODATA:9007",
+      "path": "/{0}.json",
+      "refPath": "/{0}.json",
       "useOrg": "true"
    },
 

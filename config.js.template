@@ -2,7 +2,7 @@
 
 // S4S Discovery Data Server
 // File: config.js
-const version = '20190507';
+const version = '20200814';
 
 // Required modules
 const argv = require('optimist').argv;
@@ -98,5 +98,19 @@ config.providersForGroup = function (id, groupName) {
    }
    return providersForGroup;
 }
+
+// ----- Data -----
+
+config.dataName = 'Discovery';
+config.uploadDir = 'uploadedData';
+config.dataUploadUrl = function(id) {
+   return `http://THIS/data/upload/${id}`;
+}
+config.dataInfoUrl = 'about:blank';
+config.dataContinueLabel = 'Continue';
+config.dataContinueUrl = function(id) {
+   return `http://APP/uploaded/${id}`;
+}
+config.dataSuccessMessage = 'Data successfully uploaded.';
 
 module.exports = config;

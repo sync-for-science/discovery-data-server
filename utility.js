@@ -2,7 +2,7 @@
 
 // S4S Discovery utilities
 // File: utility.js
-const version = '20180308';
+const version = '20191122';
 
 // Required modules
 const moment = require('moment-timezone');
@@ -143,7 +143,8 @@ exports.documentRestifyRoutes = function (server) {
       if (server.routes.hasOwnProperty(route)) {
          try {
             // Get documentation from route's function (if defined)
-            var doc = server.routes[route][2]();
+	    let routeFnIndex = server.routes[route].length - 1;		// Route's function is the last element
+            var doc = server.routes[route][routeFnIndex]();
 
 	    // Add route info
 	    var spec = server.router.mounts[route].spec;

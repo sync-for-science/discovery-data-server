@@ -2,7 +2,7 @@
 
 // S4S Discovery Data Server Participants web service
 // File: participants.js
-const version = '20191016';
+const version = '20200727';
 
 // Required modules
 const restifyClients = require('restify-clients');
@@ -92,7 +92,7 @@ function getAllParticipantData (id, callback) {
 
    if (groupsForParticipant.length > 0) {
       // Organize resources by group members
-      process.stdout.write('ID: ' + id + ' Groups: ' + groupsForParticipant.length + '\n');
+      process.stdout.write('ID: ' + id + ' ByGroups: ' + groupsForParticipant.length + '\n');
       getAllParticipantDataForGroups(participantData, groupsForParticipant, id, callback);
    }
 
@@ -105,13 +105,13 @@ function getAllParticipantData (id, callback) {
 
    if (providersForParticipantUseOrg.length > 0) {
       // Organize resources by providing organization
-      process.stdout.write('ID: ' + id + ' Orgs: ' + providersForParticipantUseOrg.length + '\n');
+      process.stdout.write('ID: ' + id + ' ByOrgs: ' + providersForParticipantUseOrg.length + '\n');
       getAllParticipantDataNoGroups(participantData, providersForParticipantUseOrg, id, organizeResources, callback);
    }
 
    if (providersForParticipantNoOrg.length > 0) {
       // Organize resources using "old" (no groups/org) format
-      process.stdout.write('ID: ' + id + ' Non-group/orgs: ' + providersForParticipantNoOrg.length + '\n');
+      process.stdout.write('ID: ' + id + ' ByNon-group/orgs: ' + providersForParticipantNoOrg.length + '\n');
       getAllParticipantDataNoGroups(participantData, providersForParticipantNoOrg, id,
 				    (participantData, defaultName, participantId, obj) => participantData[defaultName] = obj, callback);
    }
@@ -246,7 +246,7 @@ function getAllParticipantDataNoGroups (participantData, providersForParticipant
       try {
          providerName = thisProvider.providerName;
          providerUrlBase = providers[providerName].base;
-	 process.stdout.write('base: ' + providers[providerName].base + '\n');
+	 process.stdout.write(providerName + ' base: ' + providers[providerName].base + '\n');
          providerUrlPath = providers[providerName].path.format(thisProvider.patientId);
       } catch (e) {
 	 // Invalid/malformed provider
@@ -327,14 +327,16 @@ function getAllDataFromProvider(providerClient, providerUrlBase, providerUrlPath
 	    // Set initial result
 	    result = Object.assign({}, bundle);
 	    result.entry = [];
-	    result.link = result.link.filter(link => link.relation !== 'next');	// Dump the 'next' link
+	    if (result.link) {
+	       result.link = result.link.filter(link => link.relation !== 'next');	// Dump the 'next' link
+	    }
 	    result.total = 0;
 	 }
 	 // Add to prior results
 	 addNewResources(resourceHash, result, bundle)
 	  
 	 // More data to fetch?
-	 let nextLink = bundle.link.find(link => link.relation === 'next');
+	 let nextLink = bundle.link ? bundle.link.find(link => link.relation === 'next') : null;
 //	 process.stdout.write('nextLink: ' + JSON.stringify(nextLink, null, 3) + '\n');
 	 if (!nextLink) {
 	    callbackFn(err, req, res, result);
@@ -362,6 +364,11 @@ function addNewResources(resourceHash, result, bundle) {
    }
 }
 
+// If ref starts with (contains) 'urn:uuid:', replace with type descriptor
+function handleUuid(ref, descr) {
+   return ref && ref.replace('urn:uuid:', descr);
+}
+
 // Organize resources by the providing organization
 function organizeResources(participantData, defaultName, participantId, obj) {
    let patient;		// Patient resource
@@ -377,14 +384,17 @@ function organizeResources(participantData, defaultName, participantId, obj) {
 	    break;
 
 	 case 'Encounter':
-	    encs['Encounter/'+elt.resource.id] = elt.resource.serviceProvider.reference;
+	    encs['Encounter/'+elt.resource.id] = handleUuid(elt.resource.serviceProvider.reference, '');
 	    break;
 
 	 case 'Claim':
-	    claims['Claim/'+elt.resource.id] = elt.resource.organization.reference;
+	    claims['Claim/'+elt.resource.id] = handleUuid(elt.resource.organization.reference, '');
 	    break;
 
 	 case 'Organization':
+//@@@	    console.log('Organization: ' + elt.resource.name);
+//@@@	    console.log('   id: ' + elt.resource.id);
+//@@@	    console.log('   guid: ' + elt.resource.identifier[0].value);
 	    orgs['Organization/'+elt.resource.id] = elt.resource.name;		// By org id
 	    orgs[elt.resource.identifier[0].value] = elt.resource.name;		// By GUID/hash
 	    break;
@@ -416,13 +426,18 @@ function organizeResources(participantData, defaultName, participantId, obj) {
 	    break;
 
 	 case 'Encounter':
-	    results[orgs[elt.resource.serviceProvider.reference]].entry.push(elt);
-	    results[orgs[elt.resource.serviceProvider.reference]].total++;
+//@@@	    console.log(JSON.stringify(elt.resource));
+	    let provRef = handleUuid(elt.resource.serviceProvider.reference, 'Organization/');
+//@@@	    console.log('provRef: ' + provRef);
+//@@@	    console.log('orgs: ' + JSON.stringify(orgs));
+	    results[orgs[provRef]].entry.push(elt);
+	    results[orgs[provRef]].total++;
 	    break;
 
 	 case 'Claim':
-	    results[orgs[elt.resource.organization.reference]].entry.push(elt);
-	    results[orgs[elt.resource.organization.reference]].total++;
+	    let orgRef = handleUuid(elt.resource.organization.reference, 'Organization/');
+	    results[orgs[orgRef]].entry.push(elt);
+	    results[orgs[orgRef]].total++;
 	    break;
 
 	 case 'ExplanationOfBenefit':
@@ -430,8 +445,9 @@ function organizeResources(participantData, defaultName, participantId, obj) {
 	       results[orgs[elt.resource.organization.identifier.value]].entry.push(elt);
 	       results[orgs[elt.resource.organization.identifier.value]].total++;
 	    } else if (elt.resource.claim) {
-	       results[orgs[claims[elt.resource.claim.reference]]].entry.push(elt);
-	       results[orgs[claims[elt.resource.claim.reference]]].total++;
+	       let claimRef = handleUuid(elt.resource.claim.reference, 'Claim/');
+	       results[orgs[claims[claimRef]]].entry.push(elt);
+	       results[orgs[claims[claimRef]]].total++;
 	    } else {
 	       process.stdout.write(`NO REFERENCE (${participantId}): ExplanationOfBenefit ID: ${elt.resource.id}\n`);
 	    }
@@ -439,11 +455,15 @@ function organizeResources(participantData, defaultName, participantId, obj) {
 
 	 default:
 	    if (elt.resource.encounter) {
-	       results[orgs[encs[elt.resource.encounter.reference]]].entry.push(elt);
-	       results[orgs[encs[elt.resource.encounter.reference]]].total++;
+	       let encRef = handleUuid(elt.resource.encounter.reference, 'Encounter/');
+	       results[orgs[encs[encRef]]].entry.push(elt);
+	       results[orgs[encs[encRef]]].total++;
 	    } else if (elt.resource.context) {
-	       results[orgs[encs[elt.resource.context.reference]]].entry.push(elt);
-	       results[orgs[encs[elt.resource.context.reference]]].total++;
+	       let contextRef = handleUuid(elt.resource.context.reference, 'Encounter/');
+//@@@	       console.log('contextRef: ' + contextRef);
+//@@@	       console.log('encounters: ' + JSON.stringify(encs));
+	       results[orgs[encs[contextRef]]].entry.push(elt);
+	       results[orgs[encs[contextRef]]].total++;
 	    } else {
 	       process.stdout.write(`NO REFERENCE (${participantId}): ${elt.resource.resourceType} ID: ${elt.resource.id}\n`);
 	    }
@@ -512,13 +532,17 @@ function addAnnotations(id, data) {
 //   console.log(JSON.stringify(annotationsObj, null, 3));
 
    for (let provider in data) {
-      for (let elt of data[provider].entry) {
-	 let subKey = `${provider}_${elt.resource.id}`;
-	 let annotation = annotationsObj[subKey];
-	 if (annotation) {
-//	    console.log(`   ${provider} - ${elt.resource.id}:`);
-//	    console.log(`   ${JSON.stringify(annotation, null, 3)}`);
-	    elt.resource['discoveryAnnotation'] = annotation;
+//@@@      console.log('provider: ' + provider);
+//@@@      console.log(data);
+      if (data[provider].entry) {
+	 for (let elt of data[provider].entry) {
+	    let subKey = `${provider}_${elt.resource.id}`;
+	    let annotation = annotationsObj[subKey];
+	    if (annotation) {
+//	       console.log(`   ${provider} - ${elt.resource.id}:`);
+//	       console.log(`   ${JSON.stringify(annotation, null, 3)}`);
+	       elt.resource['discoveryAnnotation'] = annotation;
+	    }
 	 }
       }
    }

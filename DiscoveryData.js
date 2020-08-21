@@ -2,7 +2,7 @@
 
 // S4S Discovery Data Services
 // File: DiscoveryData.js
-const version = '20191008';
+const version = '20200815';
 
 // Required modules
 const restify = require('restify');
@@ -14,23 +14,25 @@ const util = require('./utility');
 const config = require('./config');
 
 // Create a file logger enabling the standard serializers
-const logInst = new Logger({
+const logInst = Logger.createLogger({
     	name: 'DiscoveryData',
-		serializers: Logger.stdSerializers,
+	serializers: Logger.stdSerializers,
     	streams: [
 		{
-		   level: config.logLevel,
-		   path: config.logFile
+		   type: 'file',
+		   path: config.logFile,
+		   level: config.logLevel
 		}]
 });
 
 // Setup restify
-const server = restify.createServer({name: 'S4S Discovery Data Server', version: '1.2.0', log: logInst});
+const server = restify.createServer({name: 'S4S Discovery Data Server', version: '1.3.0', log: logInst});
 server.use(restify.plugins.bodyParser());
 
 // CORS support
 server.pre(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', '*');
     next();
 });
 
@@ -67,6 +69,7 @@ var isReady = {};
 util.setNotReady(isReady, 'providers');
 util.setNotReady(isReady, 'participants');
 util.setNotReady(isReady, 'reference');
+util.setNotReady(isReady, 'data');
 
 // ---------- Document the available routes --------------------
 server.get('/', documentRoutes);
@@ -86,6 +89,7 @@ providers.on('ready', function () {
 server.get('/providers', providers.providers);
 server.get('/providers/:id', providers.providersForParticipant);
 
+
 // ---------- Configure the 'participants' service --------------------
 var participants = require('./participants');
 participants.on('ready', function () {
@@ -101,6 +105,7 @@ server.get('/participants', participants.participants);
 server.get('/participants/:id', participants.participantData);
 server.post('/participants/:id/:provider/:resourceId', participants.participantAnnotation);
 
+
 // ---------- Configure the 'reference' service --------------------
 var reference = require ('./reference');
 reference.on('ready', function () {
@@ -114,9 +119,47 @@ reference.on('ready', function () {
 // Allowed 'reference' methods and routes
 server.get('/reference/:provider/:referencePath', reference.reference);
 
+
+// ---------- Configure the 'data' service --------------------
+var data = require ('./data');
+data.on('ready', function () {
+    // Check whether all services are ready
+    if (util.setReady(isReady, 'data')) {
+	// Yes -- start listening for requests
+	listen();
+    }
+});
+
+// Allowed 'data' methods and routes
+server.get('/data/manifest', data.manifest);
+server.put('/data/upload/:id', binaryParser, data.upload);
+server.get('/data/download/:id', data.download);
+
+
 //---------------------------------------------------------------------------------
 
 // SUPPORT FUNCTIONS
+
+// Binary data parser
+function binaryParser (req, res, next) {
+   if (req.contentType() !== 'application/octet-stream' ) {
+      next();
+
+   } else {
+      let buffer = [];
+
+      req.on('error', next);
+
+      req.on('data', function onRequestData(chunk) {
+	 buffer.push(chunk);
+      });
+
+      req.once('end', function() {
+	 req.body = Buffer.concat(buffer).toString('binary');
+	 next();
+      });
+   }
+}
 
 // Document routes
 function documentRoutes (req, res, next) {

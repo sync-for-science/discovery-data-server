@@ -4,13 +4,15 @@
    "author": "cingulata, inc.",
    "description": "S4S Discovery Data Server",
    "dependencies": {
-      "bunyan": "^1.8.12",
-      "handlebars": "^4.0.11",
+      "bunyan": "^1.8.14",
+      "handlebars": "^4.5.3",
+      "jszip": "^3.2.2",
       "moment-timezone": "^0.5.14",
       "node-localstorage": "^1.3.1",
       "optimist": "^0.6.1",
       "restify": "^6.3.4",
       "restify-clients": "^2.0.0",
+      "sanitize-filename": "^1.6.3",
       "seedrandom": "^2.4.4",
       "util": "^0.10.3"
    },

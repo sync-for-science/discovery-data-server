@@ -1,1 +1,12 @@
-node_modules
+# My personal ignores
+
+*.new*
+*.bak*
+
+OLD/
+
+# in process edits
+\#*\#
+
+serv
+test
