@@ -19,6 +19,7 @@ Verify the target system is current:
 
 Clone this repository:
 
+    cd ~
     git clone https://github.com/sync-for-science/discovery-data-server
     cd discovery-data-server
 
