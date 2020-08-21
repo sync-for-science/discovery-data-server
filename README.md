@@ -2,9 +2,9 @@
 
 The S4S Discovery application consists of the following components:
 
-1. The Discovery Application Server <https://github.com/sync-for-science/discovery>
-2. The Discovery FHIR Demo Data Providers <https://github.com/sync-for-science/discovery-FHIR-data>
-3. **The Discovery Data Server (this package)** <https://github.com/sync-for-science/discovery-data-server>
+1. The Discovery Application Server [<https://github.com/sync-for-science/discovery>]
+2. The Discovery FHIR Demo Data Providers [<https://github.com/sync-for-science/discovery-FHIR-data>]
+3. **The Discovery Data Server (this package)** [<https://github.com/sync-for-science/discovery-data-server>]
 
 This package sets up the S4S Discovery Data Server as a JSON web service.
 
