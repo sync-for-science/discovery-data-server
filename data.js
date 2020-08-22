@@ -2,7 +2,7 @@
 
 // S4S Discovery Data Server Providers web service
 // File: data.js
-const version = '20200814';
+const version = '20200822';
 
 // Required modules
 const EventEmitter = require('events').EventEmitter;
@@ -149,7 +149,10 @@ function downloadData(req, res, id, callback) {
 			      .then(function success(content) {
 				 // Accumulate resources for this file
 				 let res = JSON.parse(content).entry;
-				 resources[provName].resources = resources[provName].resources.concat(res);
+				 if (res) {
+				    // Files has resources
+				    resources[provName].resources = resources[provName].resources.concat(res);
+				 }
 				 resources[provName].remaining--;
 
 				 if (resources[provName].remaining === 0) {
