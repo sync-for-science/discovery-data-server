@@ -26,15 +26,15 @@ config.requestCount=50;
 
 // ----- Per deployment -----
 if (argv.dev || argv.development) {
-   // DEVELOPMENT
-   config.deploy = 'DEVELOPMENT';
-   config.listenPort = 8081;
-   config.logFile = 'discovery-data.log';
+  // DEVELOPMENT
+  config.deploy = 'DEVELOPMENT';
+  config.listenPort = parseInt(process.env.PORT, 10); // originally: 8081
+  config.logFile = 'discovery-data.log';
 } else {
-   // PRODUCTION (default)
-   config.deploy = 'PRODUCTION';
-   config.listenPort = 80;
-   config.logFile = '/var/log/discovery-data.log';
+  // PRODUCTION (default)
+  config.deploy = 'PRODUCTION';
+  config.listenPort = parseInt(process.env.PORT, 10); // originally: 80
+  config.logFile = '/var/log/discovery-data.log';
 }
 
 // ----- Providers & Participants -----
