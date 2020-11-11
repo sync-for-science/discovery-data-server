@@ -104,12 +104,12 @@ config.providersForGroup = function (id, groupName) {
 config.dataName = 'Discovery';
 config.uploadDir = 'uploadedData';
 config.dataUploadUrl = function(id) {
-   return `http://THIS/data/upload/${id}`;
+   return `http://DATA_SERVER_HOST/data/upload/${id}`; // localhost:8081 (or data-server:8081, from different container)
 }
 config.dataInfoUrl = 'about:blank';
 config.dataContinueLabel = 'Continue';
 config.dataContinueUrl = function(id) {
-   return `http://APP/uploaded/${id}`;
+   return `http://UI_HOST/uploaded/${id}`; // localhost:3000 (not web:3000)
 }
 config.dataSuccessMessage = 'Data successfully uploaded.';
 
