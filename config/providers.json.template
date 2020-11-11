@@ -1,12 +1,12 @@
 {
    "DSTU2 Provider": {
-      "base": "http://DEMODATA:9002",
+      "base": "http://DSTU2_HOST",
       "path": "/{0}.json",
       "refPath": "/{0}.json"
    },
 
    "DSTU3 Provider": {
-      "base": "http://DEMODATA:9007",
+      "base": "http://DSTU3_HOST",
       "path": "/{0}.json",
       "refPath": "/{0}.json"
    },
@@ -18,7 +18,7 @@
    },
 
    "Synthea": {
-      "base": "http://DEMODATA:9007",
+      "base": "http://DSTU3_HOST",
       "path": "/{0}.json",
       "refPath": "/{0}.json",
       "useOrg": "true"
