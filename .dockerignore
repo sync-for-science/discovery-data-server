@@ -1,0 +1,22 @@
+# Ignore everything
+**
+
+# Especially ignore:
+.git
+**/node_modules
+
+# Allow files and directories
+!/config/**
+!package.json
+!package-lock.json
+
+# Allow additional files (in order that they are used by run.sh)
+!run.sh
+!DiscoveryData.js
+!utility.js
+!participants.json
+!template.html
+!providers.js
+!participants.js
+!reference.js
+!data.js

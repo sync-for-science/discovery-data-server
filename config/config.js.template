@@ -1,0 +1,116 @@
+'use strict';
+
+// S4S Discovery Data Server
+// File: config.js
+const version = '20200814';
+
+// Required modules
+const argv = require('optimist').argv;
+const fs = require('fs');
+
+if (argv.help) {
+   console.log('Usage: ' + argv.$0 + ' {--dev | --development}');
+   process.exit();
+}
+
+var config = {};
+
+// ----- COMMON -----
+config.logLevel = 'info';
+config.timezone = 'America/Los_Angeles';
+config.providerConnectTimeout = 250;
+config.providerRequestTimeout = 1000;
+config.retries = 1;
+config.minRetryTimeout = 250;
+config.requestCount=50;
+
+// ----- Per deployment -----
+if (argv.dev || argv.development) {
+  // DEVELOPMENT
+  config.deploy = 'DEVELOPMENT';
+  config.listenPort = parseInt(process.env.PORT, 10); // originally: 8081
+  config.logFile = 'discovery-data.log';
+} else {
+  // PRODUCTION (default)
+  config.deploy = 'PRODUCTION';
+  config.listenPort = parseInt(process.env.PORT, 10); // originally: 80
+  config.logFile = '/var/log/discovery-data.log';
+}
+
+// ----- Providers & Participants -----
+
+// Get the object representing all providers:
+//   { "provider1-name": { group: "group-name", "base: "url", path: "path", refPath: "path", useOrg: true|false, randLow: "low", randHigh: "high" },
+//     ... }
+config.providers = JSON.parse(fs.readFileSync('providers.json'));
+
+// Get the object representing all participants:
+//   { "id1": { name: "name", flagged: true/false, gender: F/M, dob: "date", dateRange: year1-year2, valueCount: num,
+//              providers: [{ providerName: "name", patientId: "id"}, ... ]},
+//     ... }
+config.participants = JSON.parse(fs.readFileSync('participants.json'));
+
+// Return the array of available provider names
+config.providerNames = function () {
+   let names = [];
+   for (let name in config.providers) {
+      names.push(name);
+   }
+   return names;
+}
+
+// Return the array of providers for this id/participant (each { providerName: "name", patientId: "id" })
+config.providersForParticipant = function (id) {
+   const thisParticipant = config.participants[id];
+   return thisParticipant ? thisParticipant.providers : [];
+}
+
+// Return the array of group names for this id/participant
+config.groupsForParticipant = function (id) {
+   const thisParticipant = config.participants[id];
+   const providersForParticipant = thisParticipant ? thisParticipant.providers : [];
+   let groupNames = [];
+   for (let thisProvider of providersForParticipant) {
+      let providerInfo = config.providers[thisProvider.providerName];
+      if (providerInfo) {
+	 let groupName = providerInfo.group;
+	 if (groupName && !groupNames.includes(groupName)) {
+	    groupNames.push(groupName);
+	 }
+      }
+   }
+   return groupNames;
+}
+
+// Return the array of providers for this participant and group (each { providerName: "name", patientId: "patient-id", randLow: "low", randHigh: "high" })
+config.providersForGroup = function (id, groupName) {
+   let providersForGroup = [];
+   for (let providerName in config.providers) {
+      let thisProvider = config.providers[providerName];
+      if (thisProvider.group === groupName) {
+	 let thisParticipant = config.participants[id];
+	 let providerForParticipant = thisParticipant.providers.find(elt => elt.providerName === providerName);
+	 if (providerForParticipant) {
+	    providersForGroup.push({ providerName: providerName, patientId: providerForParticipant.patientId,
+				     randLow: thisProvider.randLow, randHigh: thisProvider.randHigh });
+	 }
+      }
+   }
+   return providersForGroup;
+}
+
+// ----- Data -----
+
+config.dataName = 'Discovery';
+config.uploadDir = 'uploadedData';
+config.dataUploadUrl = function(id) {
+   return `http://DATA_SERVER_HOST/data/upload/${id}`; // localhost:8081 (or data-server:8081, from different container)
+}
+config.dataInfoUrl = 'about:blank';
+config.dataContinueLabel = 'Continue';
+config.dataContinueUrl = function(id) {
+   return `http://UI_HOST/uploaded/${id}`; // localhost:3000 (not web:3000)
+}
+config.dataSuccessMessage = 'Data successfully uploaded.';
+
+module.exports = config;
